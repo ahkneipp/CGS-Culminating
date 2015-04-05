@@ -1,0 +1,50 @@
+-Version 1.0 Indev - 1/30/15
+Time Worked: 1 hour
+    +Created main package
+    +Created BlackHoleSimulator class
+    +Created util Package
+    +Created Vector class and get/set methods
+    +Created Velocity class
+
+-Version 1.01 Indev - 2/8/15
+Time Worked: 2 hours
+    +Created Scalar class in util package
+    +Created Mass class in util package
+    +added methods in Vector class to accept multiple double arguments instead of a single array argument
+    -deprecated Vector.setVectorMatrixNotation method for inflexible mathematics
+    ~debugged Velocity class to extend com.canine505.util.Vector instead of java.util.Vector
+
+-Version 1.02 Indev - 2/26/15
+Time Worked:  5.5 hours
+    +Added BlackHoleComponent class
+    +Added constructor for Velocity class
+    +Added libs package
+    +Added StdLib and UnitLib libraries
+    +Added isEqualTo method to StdLib (see JavaDoc for more information)
+    +Added boolean flag to print or not print debug messages
+    +Added ErrorMessageClass for error and debug reporting
+    +Added ability for vectors and scalars to guess their metric unit based on the provided unitMultiplier
+    +Added final String variables VERSION and LAST_UPDATED
+    +Added Gravitational Constant (G)
+    +Added Speed of light (c)
+    +Added Black hole size calculation based on Mass
+    ~Changed vector and mass classes to divide unitMultiplier out so the numbers are handleable.
+    ~Found out big numbers weren't actually handleable under the division system and considered methods to solve the problems
+    caused by big numbers
+    ~Changed Vector class to PhysicsVector for compatibility with the Java standard libraries
+
+-Version 1.021 Indev - 2/27/15
+Time Worked: .5 hours
+    +Added the Unit class
+    +Added ability for the black hole to stay in the center after resizing.
+    -RIP Leonard Nimoy
+
+-Version 1.1 Indev - 3/15/15
+Time Worked: 2 hours
+    -Deprecated guessUnitPrefix in UnitLib for the mass overhaul
+    +Laid down framework for new mass system
+
+-Version 1.11 Indev - 3/20/15
+Time Worked: 2 hours
+    +Nearly finished Unit Overhall
+    -4 null pointer exceptions in runtime
