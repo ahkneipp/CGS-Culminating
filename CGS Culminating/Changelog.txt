@@ -52,6 +52,9 @@ Time Worked: 2 hours
 -Version 1.2 Indev - 4/10/15, 4/11/15
 Time Worked: 1.5 hour + started at 9:00
 	+Fixed null pointer exceptions
+	+Added MatterComponent
+	+Added StarComponent
+	+Added Movable interface for continuity between visual components
 	+Synced project to GitHub between updates, can be found at: https://github.com/canine505/CGS-Culminating
 	-Removed dependency on specific default mass and length units
 	-Deprecated setDefaultMassUnit and setDefaultLenghtUnit for setDefaultUnitMultipler
