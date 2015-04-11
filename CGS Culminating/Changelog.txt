@@ -48,3 +48,10 @@ Time Worked: 2 hours
 Time Worked: 2 hours
     +Nearly finished Unit Overhall
     -4 null pointer exceptions in runtime
+    
+-Version 1.2 Indev - 4/10/15
+Time Worked: Started at 8:30
+	+Fixed null pointer exceptions
+	-Removed dependency on specific default mass and length units
+	-Deprecated setDefaultMassUnit and setDefaultLenghtUnit for setDefaultUnitMultipler
+	

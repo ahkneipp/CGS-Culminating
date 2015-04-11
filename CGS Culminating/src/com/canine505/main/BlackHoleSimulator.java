@@ -18,9 +18,8 @@ public class BlackHoleSimulator
         ErrorMessage.setPrintErrorStatements(true);
         //TODO set to false before any presentation
         ErrorMessage.setPrintTestingStatements(true);
-        //Next two lines set the default units for Mass and Length
-        com.canine505.util.Unit.setDefaultMassUnit(UnitLib.KILOGRAM);
-        com.canine505.util.Unit.setDefaultLengthUnit(UnitLib.KILOMETER);
+        //Sets the default multiplier to handle larger numbers
+        com.canine505.util.Unit.setDefaultMultipler(1000.0);
         System.out.println("Black Hole Simulator");
         System.out.println("Written by Canine505");
         /*
@@ -32,6 +31,7 @@ public class BlackHoleSimulator
         Version 1.021 Indev - 2/27/15
         Version 1.1 Indev - 3/15/15
         Version 1.11 Indev - 3/20/15
+        Version 1.2 Indev - 4/10/15
          */
         System.out.print("Version: " + VERSION);
         System.out.println(", Last updated: " + LAST_UPDATED);
@@ -47,7 +47,7 @@ public class BlackHoleSimulator
         //Testing stuff goes here
         ErrorMessage.printTst(String.valueOf(Double.MAX_VALUE),false);
     }
-    private static final String VERSION = "1.11 Indev";
-    private static final String LAST_UPDATED = "3/20/15";
+    private static final String VERSION = "1.2 Indev";
+    private static final String LAST_UPDATED = "4/10/15";
     public static final JFrame window = new JFrame();
 }

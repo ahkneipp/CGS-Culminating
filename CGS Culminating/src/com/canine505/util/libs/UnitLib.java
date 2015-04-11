@@ -98,9 +98,10 @@ public class UnitLib
         }
     }
     //unit is kilograms
-    public static final Unit STELLAR_MASS = new Unit(1.98892 * Math.pow(10,33),"Stellar Mass");
-    public static final Unit KILOGRAM = new Unit(1000, "Kilogram");
-    public static final Unit KILOMETER = new Unit(1000, "Kilometer");
+    //TODO convert unit multipliers to grams, I think.  Work through the ramifications
+    public static final Unit STELLAR_MASS = new Unit(1988920000000000000000000000000000.0,"Stellar Mass");
+    public static final Unit KILOGRAM = new Unit(1000.0, "Kilogram");
+    public static final Unit KILOMETER = new Unit(1000.0, "Kilometer");
     public static final Unit ASTRONOMICAL_UNIT = new Unit (149597870.7, "AU");
     public static final Unit LIGHT_YEAR = new Unit (9.46073 * Math.pow(10,12), "LY");
 
