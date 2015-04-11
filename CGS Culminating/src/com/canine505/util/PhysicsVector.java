@@ -176,9 +176,9 @@ public class PhysicsVector
   /**
    * The direction of the PhysicsVector, stored as degrees
    */
-  private double direction;
+  protected double direction;
   /**
    * The magnitude of the vector.
    */
-  private double magnitude;
+  protected double magnitude;
 }

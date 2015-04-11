@@ -50,12 +50,15 @@ Time Worked: 2 hours
     -4 null pointer exceptions in runtime
     
 -Version 1.2 Indev - 4/10/15, 4/11/15
-Time Worked: 1.5 hour + started at 9:00
+Time Worked: 2.5 hour + started at 10:20
 	+Fixed null pointer exceptions
 	+Added MatterComponent
 	+Added StarComponent
 	+Added Movable interface for continuity between visual components
 	+Synced project to GitHub between updates, can be found at: https://github.com/canine505/CGS-Culminating
+	+Added Methods required by the movable interface to the components
+	+Added PlanetComponent to handle rocky planets
 	-Removed dependency on specific default mass and length units
 	-Deprecated setDefaultMassUnit and setDefaultLenghtUnit for setDefaultUnitMultipler
+	~Updated Velocity class to use the new Unit class and removed deprecated references
 	

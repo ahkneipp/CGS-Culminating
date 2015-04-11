@@ -26,6 +26,10 @@ public class Unit
     {
     	return this.unitMultiplier;
     }
+    public String getUnitName()
+    {
+    	return this.unitName;
+    }
     public static void setDefaultMultipler(double defaultUnitMultiplier)
     {
     	//Next two are included for compatibility with deprecated methods
