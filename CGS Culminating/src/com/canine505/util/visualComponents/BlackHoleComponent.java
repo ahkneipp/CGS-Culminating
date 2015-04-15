@@ -2,7 +2,10 @@ package com.canine505.util.visualComponents;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
+
 import javax.swing.JComponent;
+
 import com.canine505.util.ErrorMessage;
 import com.canine505.util.Mass;
 import com.canine505.util.Velocity;
@@ -104,15 +107,18 @@ public class BlackHoleComponent extends JComponent implements Movable
     //////////
     //fields//
     //////////
-    double x;
-    double y;
-    double diameter;
+    private double x;
+    private double y;
+    private double diameter;
     Mass mass;
     Velocity velocity;
+    public Rectangle[] hitbox = new Rectangle[8];
+//    Rectangle hitbox;
     //////////////
     //end fields//
     //////////////
 	
+    //TODO implement
 	@Override
 	public void updateVelocity() {
 		// TODO Auto-generated method stub
@@ -123,5 +129,15 @@ public class BlackHoleComponent extends JComponent implements Movable
 	public boolean getHasCollided() {
 		//TODO use rectangle class to create a hitbox
 		return false;
+	}
+	
+	@Override
+	public void calculateHitboxes() 
+	{
+		for(int i = 0; i < 8; i++)
+		{
+			hitbox[i] = 
+		}
+		
 	}
 }

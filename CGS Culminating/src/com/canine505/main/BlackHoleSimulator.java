@@ -39,11 +39,12 @@ public class BlackHoleSimulator
          */
         System.out.print("Version: " + VERSION);
         System.out.println(", Last updated: " + LAST_UPDATED);
+        //testing mass class and black hole component calculations
         components.add(new BlackHoleComponent(new Mass(1, (Double)UnitLib.STELLAR_MASS.getValue()[0])));
         //create test window of size 500^2 pixels, add a black hole component and set to visible
         window.setSize(500,500);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //testing mass class and black hole component calculations
+        //TODO increase efficiency so it doesn't iterate through the whole ArrayList every time you want to add something.
         for(int i = 0; i < components.size(); i++)
         {
         	window.add(components.get(i));

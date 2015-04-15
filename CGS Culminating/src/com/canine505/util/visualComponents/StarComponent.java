@@ -9,7 +9,7 @@ import com.canine505.util.*;
  * Created on April 11, 2015
  * Component for stars.
  */
-public class StarComponent extends MatterComponent 
+public class StarComponent extends MatterComponent implements Movable
 {
 	public StarComponent(Mass mass, double radius, double temp, double age)
 	{
@@ -25,4 +25,36 @@ public class StarComponent extends MatterComponent
 	
 	private double temperature = 0.0;
 	private double age = 0.0;
+	
+	//TODO implement each method maybe in MatterComponent
+	@Override
+	public double[] getPosition() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void updatePosition() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public Velocity getVelocity() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void updateVelocity() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public boolean getHasCollided() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public void calculateHitboxes() {
+		// TODO Auto-generated method stub
+		
+	}
 }

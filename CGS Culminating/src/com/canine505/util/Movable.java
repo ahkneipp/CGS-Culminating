@@ -1,5 +1,7 @@
 package com.canine505.util;
 
+import java.awt.Rectangle;
+
 /**
  * @author Alex Kneipp
  * Interface for all movable visual components
@@ -19,4 +21,8 @@ public interface Movable
 	public void updateVelocity();
 	//should return true if it has collided with another component and false if it has not
 	public boolean getHasCollided();
+	//use earlier derived math to determine the size and position of the hitboxes
+	public void calculateHitboxes();
+	//use to store the rectangles for the hitbox
+	public Rectangle[] hitbox = new Rectangle[8];
 }

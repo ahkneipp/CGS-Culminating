@@ -64,5 +64,6 @@ Time Worked: 3 hours
 
 -Version 1.21 Indev - 4/14/15, 4/15/15
 Time Worked: 20 min + started at 9:30
+	+Added array list of components
 
 	
