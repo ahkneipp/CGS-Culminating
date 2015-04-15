@@ -1,10 +1,13 @@
 package com.canine505.main;
 
+import java.util.ArrayList;
 import com.canine505.util.ErrorMessage;
 import com.canine505.util.Mass;
 import com.canine505.util.libs.UnitLib;
 import com.canine505.util.visualComponents.BlackHoleComponent;
 import javax.swing.JFrame;
+//import javax.swing.JPanel;
+import javax.swing.JComponent;
 
 
 /**
@@ -31,23 +34,27 @@ public class BlackHoleSimulator
         Version 1.021 Indev - 2/27/15
         Version 1.1 Indev - 3/15/15
         Version 1.11 Indev - 3/20/15
-        Version 1.2 Indev - 4/10/15
+        Version 1.2 Indev - 4/10/15, 4/11/15
+        Version 1.21 Indev - 4/14/15, 4/15/15
          */
         System.out.print("Version: " + VERSION);
         System.out.println(", Last updated: " + LAST_UPDATED);
-
-        //create test window of size 500^2, add a black hole component and set to visible
+        components.add(new BlackHoleComponent(new Mass(1, (Double)UnitLib.STELLAR_MASS.getValue()[0])));
+        //create test window of size 500^2 pixels, add a black hole component and set to visible
         window.setSize(500,500);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //testing mass class and black hole component calculations
-        window.add(new BlackHoleComponent(new Mass(1, (Double)UnitLib.STELLAR_MASS.getValue()[0])));
+        for(int i = 0; i < components.size(); i++)
+        {
+        	window.add(components.get(i));
+        }
         //ErrorMessage.printErr(new Mass(1,UnitLib.ONE_SOLAR_MASS.getValue()).getValue(),true);
         window.setVisible(true);
-
         //Testing stuff goes here
         ErrorMessage.printTst(String.valueOf(Double.MAX_VALUE),false);
     }
-    private static final String VERSION = "1.2 Indev";
-    private static final String LAST_UPDATED = "4/10/15";
+    private static final String VERSION = "1.21 Indev";
+    private static final String LAST_UPDATED = "4/15/15";
     public static final JFrame window = new JFrame();
+    public static final ArrayList<JComponent> components = new ArrayList<JComponent>(5);
 }

@@ -50,8 +50,7 @@ Time Worked: 2 hours
     -4 null pointer exceptions in runtime
     
 -Version 1.2 Indev - 4/10/15, 4/11/15
-Time Worked: 2.5 hour + started at 10:20
-	+Fixed null pointer exceptions
+Time Worked: 3 hours
 	+Added MatterComponent
 	+Added StarComponent
 	+Added Movable interface for continuity between visual components
@@ -61,4 +60,9 @@ Time Worked: 2.5 hour + started at 10:20
 	-Removed dependency on specific default mass and length units
 	-Deprecated setDefaultMassUnit and setDefaultLenghtUnit for setDefaultUnitMultipler
 	~Updated Velocity class to use the new Unit class and removed deprecated references
+	~Fixed null pointer exceptions
+
+-Version 1.21 Indev - 4/14/15, 4/15/15
+Time Worked: 20 min + started at 9:30
+
 	

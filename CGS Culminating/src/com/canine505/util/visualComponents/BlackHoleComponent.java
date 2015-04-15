@@ -100,6 +100,7 @@ public class BlackHoleComponent extends JComponent implements Movable
     {
     	return this.velocity;
     }
+    
     //////////
     //fields//
     //////////
@@ -112,22 +113,15 @@ public class BlackHoleComponent extends JComponent implements Movable
     //end fields//
     //////////////
 	
-
-
-	/* (non-Javadoc)
-	 * @see com.canine505.util.Movable#updateVelocity()
-	 */
 	@Override
 	public void updateVelocity() {
 		// TODO Auto-generated method stub
 		
 	}
-	/* (non-Javadoc)
-	 * @see com.canine505.util.Movable#getHasCollided()
-	 */
+
 	@Override
 	public boolean getHasCollided() {
-		// TODO Auto-generated method stub
+		//TODO use rectangle class to create a hitbox
 		return false;
 	}
 }
