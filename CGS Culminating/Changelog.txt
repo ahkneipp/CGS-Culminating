@@ -62,8 +62,9 @@ Time Worked: 3 hours
 	~Updated Velocity class to use the new Unit class and removed deprecated references
 	~Fixed null pointer exceptions
 
--Version 1.21 Indev - 4/14/15, 4/15/15
-Time Worked: 20 min + started at 9:30
+-Version 1.21 Indev - 4/14/15, 4/15/15, 4/16/15
+Time Worked: 1.5 hours
 	+Added array list of components
+	+Added Hitbox methods to moveable array and implemented them
 
 	
