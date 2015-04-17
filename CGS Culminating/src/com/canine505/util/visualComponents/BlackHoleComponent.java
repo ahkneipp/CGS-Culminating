@@ -103,6 +103,37 @@ public class BlackHoleComponent extends JComponent implements Movable
     	return this.velocity;
     }
     
+	@Override
+	public void calculateHitboxes() 
+	{
+		int diameter = (int)(2 * StdLib.GRAVITATIONAL_CONSTANT *
+	            mass.getValue() * mass.getUnitMultiplier() /Math.pow(StdLib.SPEED_OF_LIGHT, 2));
+		int xCourner = (int) (this.x - diameter);
+		int yCourner = (int) (this.y - diameter);
+		hitbox = new Rectangle((int)(xCourner + diameter/Math.sqrt(2.0)), (int)(yCourner + diameter/Math.sqrt(2.0)),
+				(int)(diameter/Math.sqrt(2.0)), (int)(diameter/Math.sqrt(2.0)));
+	}
+	
+	@Override
+	public Rectangle getHitbox() 
+	{
+		return hitbox;		
+	}
+	
+	@Override
+	//TODO low efficiency version, comparing everything to everything else.  Can improve by using the handshake problem
+	public boolean getHasCollided() 
+	{
+		boolean temp = false;
+		for(int i = 0; i < BlackHoleSimulator.components.size(); i++)
+		{
+			if(BlackHoleSimulator.components.get(i).getHitbox().intersects(this.getHitbox()))
+				temp = true;
+		}
+		return temp;
+	}
+	
+    
     //////////
     //fields//
     //////////
@@ -122,34 +153,4 @@ public class BlackHoleComponent extends JComponent implements Movable
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	//TODO low efficiency version, comparing everything to everything else.  Can improve by using the handshake problem
-	public boolean getHasCollided() 
-	{
-		//TODO compare everything to everything else using nested fors.
-		boolean temp = false;
-		for(int i = 0; i < BlackHoleSimulator.components.size(); i++)
-		{
-			if(BlackHoleSimulator.components.get(i).getHitbox().intersects()
-		}
-		return temp;
-	}
-	
-	@Override
-	public void calculateHitboxes() 
-	{
-		int diameter = (int)(2 * StdLib.GRAVITATIONAL_CONSTANT *
-	            mass.getValue() * mass.getUnitMultiplier() /Math.pow(StdLib.SPEED_OF_LIGHT, 2));
-		int xCourner = (int) (this.x - diameter);
-		int yCourner = (int) (this.y - diameter);
-		hitbox = new Rectangle((int)(xCourner + diameter/Math.sqrt(2.0)), (int)(yCourner + diameter/Math.sqrt(2.0)),
-				(int)(diameter/Math.sqrt(2.0)), (int)(diameter/Math.sqrt(2.0)));
-	}
-	@Override
-	public Rectangle getHitbox() 
-	{
-		return hitbox;		
-	}
-
 }
