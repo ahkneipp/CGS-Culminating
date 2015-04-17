@@ -15,6 +15,8 @@ import com.canine505.util.Movable;
 /**
  * Created by Alex Kneipp on 2/26/15
  */
+
+//TODO check anything that has to do with Unit for accuracy
 public class BlackHoleComponent extends JComponent implements Movable
 {
 	////////////////
@@ -104,7 +106,8 @@ public class BlackHoleComponent extends JComponent implements Movable
     }
     
 	@Override
-	public void calculateHitboxes() 
+	//TODO update so that it may not redeclare rectangle every time
+	public void calculateHitbox() 
 	{
 		int diameter = (int)(2 * StdLib.GRAVITATIONAL_CONSTANT *
 	            mass.getValue() * mass.getUnitMultiplier() /Math.pow(StdLib.SPEED_OF_LIGHT, 2));
@@ -121,14 +124,15 @@ public class BlackHoleComponent extends JComponent implements Movable
 	}
 	
 	@Override
-	//TODO low efficiency version, comparing everything to everything else.  Can improve by using the handshake problem
-	public boolean getHasCollided() 
+	//TODO may need to learn to handle multiple collssions
+	public int hasCollided() 
 	{
-		boolean temp = false;
+		int temp = -1;
 		for(int i = 0; i < BlackHoleSimulator.components.size(); i++)
 		{
-			if(BlackHoleSimulator.components.get(i).getHitbox().intersects(this.getHitbox()))
-				temp = true;
+			if(BlackHoleSimulator.components.get(i).getHitbox() != this.getHitbox() && 
+					BlackHoleSimulator.components.get(i).getHitbox().intersects(this.getHitbox()))
+				temp = i;
 		}
 		return temp;
 	}
@@ -140,7 +144,7 @@ public class BlackHoleComponent extends JComponent implements Movable
     private double x;
     private double y;
     private double diameter;
-    private Mass mass;
+    //private Mass mass;
     private Velocity velocity;
     private Rectangle hitbox = null;
     //////////////
@@ -149,8 +153,13 @@ public class BlackHoleComponent extends JComponent implements Movable
 	
     //TODO implement
 	@Override
-	public void updateVelocity() {
-		// TODO Auto-generated method stub
-		
+	public void updateVelocity() 
+	{
+		//check if the black hole has collided with anything
+		if(this.hasCollided() != -1)
+		{
+			//TODO finish method
+			if(this.mass.getValue() >= BlackHoleSimulator.components.get(this.hasCollided()).mass.getValue());
+		}
 	}
 }

@@ -8,11 +8,17 @@ import com.canine505.util.libs.UnitLib;
 //TODO overhaul unit system to handle really large numbers BEFORE they hit complications
 public class Mass extends Scalar
 {
+	public Mass(double value, Unit unit)
+	{
+		this.setValue(value/(unit.getUnitMultiplier()/Unit.getDefaultMultiplier()));
+	}
+
     public Mass(double value, double unitMultiplier, String unit)
     {
         this.unit = new Unit(unitMultiplier/Unit.getDefaultMultiplier(),unit);
-        this.setValue(value/unitMultiplier);;
+        this.setValue(value/unitMultiplier);
     }
+
     public Mass(double value, double unitMultiplier)
     {
         //TODO write method to guess unit and replace null with it, REMEMBER TO MULTIPLY UNIT MULTIPLIER BACK OUT
@@ -25,5 +31,6 @@ public class Mass extends Scalar
     {
         return unit.getUnitMultiplier();
     }
+
     private Unit unit;
 }

@@ -53,7 +53,7 @@ public class StarComponent extends MatterComponent implements Movable
 		return false;
 	}
 	@Override
-	public void calculateHitboxes() {
+	public void calculateHitbox() {
 		// TODO Auto-generated method stub
 		
 	}

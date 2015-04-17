@@ -8,6 +8,8 @@ import java.awt.Rectangle;
  */
 public interface Movable 
 {
+
+
 	///////////
 	//methods//
 	///////////
@@ -19,10 +21,16 @@ public interface Movable
 	public Velocity getVelocity();
 	//should change the current velocity of the object based on collisions and the gravity of other objects
 	public void updateVelocity();
-	//should return true if it has collided with another component and false if it has not
-	public boolean getHasCollided();
+	//should return the index of the object with which it collided if it has collided with another component and -1 if it has not
+	public int hasCollided();
 	//use earlier derived math to determine the size and position of the hitboxes
-	public void calculateHitboxes();
+	public void calculateHitbox();
 	
 	public Rectangle getHitbox();
+	
+	//////////
+	//fields//
+	//////////
+	//TODO maybe make private mass and add getMass method to interface.
+	public Mass mass = null;
 }

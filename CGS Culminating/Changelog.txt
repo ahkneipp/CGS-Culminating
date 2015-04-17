@@ -62,11 +62,13 @@ Time Worked: 3 hours
 	~Updated Velocity class to use the new Unit class and removed deprecated references
 	~Fixed null pointer exceptions
 
--Version 1.21 Indev - 4/14/15, 4/15/15, 4/16/15
-Time Worked: 1.5 hours
+-Version 1.21 Indev - 4/14/15, 4/15/15, 4/16/15, 4/17/15
+Time Worked: 1.5 hours + started at 9:30
 	+Added array list of components
 	+Added Hitbox methods to moveable interface and implemented them (ish)
 	+Fixed Git sync problems(ish)
-	~Changed component array list to type movable so things worky
+	+Added Mass field to Movable interface
+	+Started implementing updateVelocity on BlackHoleComponent
+	~Changed component array list to type movable so things work
 
 	
