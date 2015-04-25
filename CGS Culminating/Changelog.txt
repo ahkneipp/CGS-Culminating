@@ -72,7 +72,7 @@ Time Worked: 2.5 hours
 	~Changed component array list to type movable so things work
 	
 -Version 1.22 Indev - 4/25/15
-Time Worked: started at 10
+Time Worked: 2 hours
 	~Restructured heirarchy tree for the components
 	-Removed Mass field from movable again for the restrucure
 	+Added component ID's for identification of type
