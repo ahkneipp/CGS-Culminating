@@ -8,8 +8,6 @@ import java.awt.Rectangle;
  */
 public interface Movable 
 {
-
-
 	///////////
 	//methods//
 	///////////
@@ -32,5 +30,5 @@ public interface Movable
 	//fields//
 	//////////
 	//TODO maybe make private mass and add getMass method to interface.
-	public Mass mass = null;
+	//public Mass mass = null;
 }

@@ -62,13 +62,19 @@ Time Worked: 3 hours
 	~Updated Velocity class to use the new Unit class and removed deprecated references
 	~Fixed null pointer exceptions
 
--Version 1.21 Indev - 4/14/15, 4/15/15, 4/16/15, 4/17/15
-Time Worked: 1.5 hours + started at 9:30
+-Version 1.21 Indev - 4/14/15, 4/15/15, 4/16/15, 4/17/15, 4/24/15
+Time Worked: 2.5 hours
 	+Added array list of components
-	+Added Hitbox methods to moveable interface and implemented them (ish)
+	+Added Hitbox methods to movable interface and implemented them (ish)
 	+Fixed Git sync problems(ish)
 	+Added Mass field to Movable interface
 	+Started implementing updateVelocity on BlackHoleComponent
 	~Changed component array list to type movable so things work
-
+	
+-Version 1.22 Indev - 4/25/15
+Time Worked: started at 10
+	~Restructured heirarchy tree for the components
+	-Removed Mass field from movable again for the restrucure
+	+Added component ID's for identification of type
+	+Added RandomWithRange method to Random color generator to fix runtime exceptions (lots).
 	

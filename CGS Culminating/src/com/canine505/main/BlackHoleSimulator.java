@@ -2,11 +2,14 @@ package com.canine505.main;
 
 import java.awt.Component;
 import java.util.ArrayList;
+
 import com.canine505.util.ErrorMessage;
 import com.canine505.util.Mass;
 import com.canine505.util.Movable;
 import com.canine505.util.libs.UnitLib;
 import com.canine505.util.visualComponents.BlackHoleComponent;
+import com.canine505.util.visualComponents.MatterComponent;
+
 import javax.swing.JFrame;
 //import javax.swing.JPanel;
 import javax.swing.JComponent;
@@ -38,6 +41,7 @@ public class BlackHoleSimulator
         Version 1.11 Indev - 3/20/15
         Version 1.2 Indev - 4/10/15, 4/11/15
         Version 1.21 Indev - 4/14/15, 4/15/15, 4/16/15, 4/17/15
+        Version 1.22 Indev - 4/25/15
          */
         System.out.print("Version: " + VERSION);
         System.out.println(", Last updated: " + LAST_UPDATED);
@@ -56,8 +60,8 @@ public class BlackHoleSimulator
         //Testing stuff goes here
         ErrorMessage.printTst(String.valueOf(Double.MAX_VALUE),false);
     }
-    private static final String VERSION = "1.21 Indev";
-    private static final String LAST_UPDATED = "4/17/15";
+    private static final String VERSION = "1.22 Indev";
+    private static final String LAST_UPDATED = "4/25/15";
     public static final JFrame window = new JFrame();
-    public static final ArrayList<Movable> components = new ArrayList<Movable>(5);
+    public static final ArrayList<MatterComponent> components = new ArrayList<MatterComponent>(5);
 }

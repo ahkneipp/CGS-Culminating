@@ -3,21 +3,21 @@ package com.canine505.util.visualComponents;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import javax.swing.JComponent;
+//import javax.swing.JComponent;
 import com.canine505.util.ErrorMessage;
 import com.canine505.util.Mass;
 import com.canine505.util.Velocity;
 import com.canine505.main.*;
 import com.canine505.util.libs.StdLib;
-import com.canine505.util.libs.UnitLib;
-import com.canine505.util.Movable;
+//import com.canine505.util.libs.UnitLib;
+//import com.canine505.util.Movable;
 
 /**
  * Created by Alex Kneipp on 2/26/15
  */
 
 //TODO check anything that has to do with Unit for accuracy
-public class BlackHoleComponent extends JComponent implements Movable
+public class BlackHoleComponent extends MatterComponent //implements Movable
 {
 	////////////////
 	//Constructors//
@@ -28,14 +28,14 @@ public class BlackHoleComponent extends JComponent implements Movable
         this.x = initialX;
         this.y = initialY;
         this.mass = initialMass;
-        this.velocity = vel;
+        this.vel = vel;
     }
     //presumes you want the black hole at the center of the screen
     public BlackHoleComponent(Mass initialMass)
     {
         //set the initial mass of the black hole and the position to the center of the screen
         this.mass = initialMass;
-        this.velocity = null;
+        this.vel = null;
         this.x = (BlackHoleSimulator.window.getWidth()/2)-((2 * StdLib.GRAVITATIONAL_CONSTANT *
             (initialMass.getValue() * initialMass.getUnitMultiplier()))/Math.pow(StdLib.SPEED_OF_LIGHT, 2));
         this.y = (BlackHoleSimulator.window.getHeight()/2)+((2 * StdLib.GRAVITATIONAL_CONSTANT *
@@ -102,7 +102,7 @@ public class BlackHoleComponent extends JComponent implements Movable
      */
     public Velocity getVelocity()
     {
-    	return this.velocity;
+    	return this.vel;
     }
     
 	@Override
@@ -144,22 +144,46 @@ public class BlackHoleComponent extends JComponent implements Movable
     private double x;
     private double y;
     private double diameter;
-    //private Mass mass;
-    private Velocity velocity;
+    private Mass mass;
+    //private Velocity velocity;
     private Rectangle hitbox = null;
+    //Characters before the dash are the initials of the class name, the ones after are the ones of the immediate superclass
+    public static final String ID = "BHC-MC";
     //////////////
     //end fields//
     //////////////
-	
-    //TODO implement
+	/*
+	 * Black holes tend to suck up anything, even if it's bigger, so whenever there is a colission I assume perfect energy transfer
+	 * (haha) and remove the non-black hole object, while merging its mass into that of the black hole.
+	 * If too black hole objects collide, I remove the smaller and merge it into
+	 * the larger. 
+	 */
 	@Override
 	public void updateVelocity() 
 	{
 		//check if the black hole has collided with anything
+		MatterComponent temp = BlackHoleSimulator.components.get(this.hasCollided());
 		if(this.hasCollided() != -1)
 		{
 			//TODO finish method
-			if(this.mass.getValue() >= BlackHoleSimulator.components.get(this.hasCollided()).mass.getValue());
+			//TODO don't access the mass field directly
+			//TODO use ID to find out what type of component the colider is 
+			if(this.mass.getValue() >= temp.mass.getValue());
+			{
+				//TODO actually update the actual velocity
+				//TODO hand do math to check accuracy of following statement
+				this.addMass(new Mass(temp.mass.getValue(),1));
+				//Remove the "temp" object from the array list because it was just swallowed by a black hole
+				BlackHoleSimulator.components.remove(BlackHoleSimulator.components.get(this.hasCollided()));
+			}
+			//else
+			//{
+//				//do the same thing as the if, which is only there to be copy and pasted
+//				//TODO hand do math to check accuracy of following statement
+//				this.addMass(new Mass(temp.mass.getValue(),1));
+//				//Remove the "temp" object from the array list because it was just swallowed by a black hole
+//				BlackHoleSimulator.components.remove(BlackHoleSimulator.components.get(this.hasCollided()));
+//			}
 		}
 	}
 }
