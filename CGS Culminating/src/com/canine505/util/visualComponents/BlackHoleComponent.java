@@ -3,9 +3,11 @@ package com.canine505.util.visualComponents;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+
 //import javax.swing.JComponent;
 import com.canine505.util.ErrorMessage;
 import com.canine505.util.Mass;
+import com.canine505.util.PhysicsVector;
 import com.canine505.util.Velocity;
 import com.canine505.main.*;
 import com.canine505.util.libs.StdLib;
@@ -175,6 +177,9 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
 				this.addMass(new Mass(temp.mass.getValue(),1));
 				//Remove the "temp" object from the array list because it was just swallowed by a black hole
 				BlackHoleSimulator.components.remove(BlackHoleSimulator.components.get(this.hasCollided()));
+				//update
+				this.vel.setVectorMatrixNotation(new double[] {temp.vel.getVectorMatrixNotation()[0] + this.vel.getVectorMatrixNotation()[0],
+						this.vel.getVectorMatrixNotation()[1] + temp.vel.getVectorMatrixNotation()[1]});
 			}
 			//else
 			//{

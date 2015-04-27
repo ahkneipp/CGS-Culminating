@@ -37,6 +37,36 @@ public class PhysicsVector
     magnitude = 0.0;
     direction = 0.0;
   }
+  
+  public PhysicsVector(double[] vectorMatrix)
+  {
+	  this.magnitude = Math.sqrt(Math.pow(vectorMatrix[0],2) + Math.pow(vectorMatrix[1], 2));
+	  if(vectorMatrix[0] < 0.0)
+	  {
+		  if(vectorMatrix[1] <0.0)
+		  {
+			  this.direction = Math.toDegrees(Math.atan(vectorMatrix[1]/ vectorMatrix[0])) +180.0;
+		  }
+		  //if vectorMatrix[1] is positive
+		  else
+		  {
+			  this.direction = Math.toDegrees(Math.atan(vectorMatrix[1]/vectorMatrix[0]));
+		  }
+	  }
+	  //if vectorMatrix[0] is positive
+	  else
+	  {
+		  if(vectorMatrix[1] < 0.0)
+		  {
+			  this.direction = Math.toDegrees(Math.atan(vectorMatrix[1]/vectorMatrix[0])) + 180.0;
+		  }
+		  //if vectorMatrix[1] is positive
+		  else
+		  {
+			  this.direction = Math.toDegrees(Math.atan(vectorMatrix[1]/vectorMatrix[0]));
+		  }
+	  }
+  }
 
   /**
    *Method to gather the direction of the vector in degrees
@@ -166,6 +196,7 @@ public class PhysicsVector
    * @Deprecated for possibly inflexible math on 2/8/15
    */
   @Deprecated
+  //TODO correct direction math, if incorrect
   public void setVectorMatrixNotation(double[] Vector)
   {
     direction = Math.acos(Math.toRadians(Vector[0]/magnitude));
