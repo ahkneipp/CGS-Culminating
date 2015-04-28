@@ -170,10 +170,10 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
 		MatterComponent temp = BlackHoleSimulator.components.get(this.hasCollided());
 		if(this.hasCollided() != -1)
 		{
-			//TODO finish method
+			//TODO Check if finished
 			//TODO don't access the mass field directly
 			//TODO use ID to find out what type of component the colider is 
-			if(this.mass.getValue() >= temp.mass.getValue());
+			if(this.mass.getValue() >= temp.mass.getValue()||this.getID().equals("BHC-MC"));
 			{
 				//TODO actually update the actual velocity
 				//TODO hand do math to check accuracy of following statement
@@ -184,14 +184,8 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
 				this.vel.setVectorMatrixNotation(new double[] {temp.vel.getVectorMatrixNotation()[0] + this.vel.getVectorMatrixNotation()[0],
 						this.vel.getVectorMatrixNotation()[1] + temp.vel.getVectorMatrixNotation()[1]});
 			}
-			//else
-			//{
-//				//do the same thing as the if, which is only there to be copy and pasted
-//				//TODO hand do math to check accuracy of following statement
-//				this.addMass(new Mass(temp.mass.getValue(),1));
-//				//Remove the "temp" object from the array list because it was just swallowed by a black hole
-//				BlackHoleSimulator.components.remove(BlackHoleSimulator.components.get(this.hasCollided()));
-//			}
 		}
+		this.vel = (Velocity) new PhysicsVector(new double[]{this.vel.getVectorMatrixNotation()[0] + /*TODO calculate Gravity*/1 ,
+				this.vel.getVectorMatrixNotation()[1] + /*TODO calculate Gravity*/1});
 	}
 }
