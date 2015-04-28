@@ -192,15 +192,37 @@ public class PhysicsVector
   //TODO check math in "setVectorMatrixNotation,"  maybe undeprecate
   /**
    * Sets a PhysicsVector based on two component vectors at 0 and 90 degrees.
-   * @param Vector An array with 2 elements, [0] is the x (0 degree) vector and [1] is the y (90 degree vector)
-   * @Deprecated for possibly inflexible math on 2/8/15
+   * @param vectorMatrix A double array with 2 elements, [0] is the x (0 degree) vector and [1] is the y (90 degree vector)
    */
-  @Deprecated
   //TODO correct direction math, if incorrect
-  public void setVectorMatrixNotation(double[] Vector)
+  public void setVectorMatrixNotation(double[] vectorMatrix)
   {
-    direction = Math.acos(Math.toRadians(Vector[0]/magnitude));
-    magnitude = Math.sqrt(Math.pow(Vector[0], 2)+ Math.pow(Vector[1],2));
+	  this.magnitude = Math.sqrt(Math.pow(vectorMatrix[0],2) + Math.pow(vectorMatrix[1], 2));
+	  if(vectorMatrix[0] < 0.0)
+	  {
+		  if(vectorMatrix[1] <0.0)
+		  {
+			  this.direction = Math.toDegrees(Math.atan(vectorMatrix[1]/ vectorMatrix[0])) +180.0;
+		  }
+		  //if vectorMatrix[1] is positive
+		  else
+		  {
+			  this.direction = Math.toDegrees(Math.atan(vectorMatrix[1]/vectorMatrix[0]));
+		  }
+	  }
+	  //if vectorMatrix[0] is positive
+	  else
+	  {
+		  if(vectorMatrix[1] < 0.0)
+		  {
+			  this.direction = Math.toDegrees(Math.atan(vectorMatrix[1]/vectorMatrix[0])) + 180.0;
+		  }
+		  //if vectorMatrix[1] is positive
+		  else
+		  {
+			  this.direction = Math.toDegrees(Math.atan(vectorMatrix[1]/vectorMatrix[0]));
+		  }
+	  }
   }
   //TODO finish method using correct math.
 

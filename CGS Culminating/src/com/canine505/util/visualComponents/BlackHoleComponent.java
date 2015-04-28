@@ -17,7 +17,7 @@ import com.canine505.util.libs.StdLib;
 /**
  * Created by Alex Kneipp on 2/26/15
  */
-
+//TODO delete methods and fields overridden from MatterComponent.
 //TODO check anything that has to do with Unit for accuracy
 public class BlackHoleComponent extends MatterComponent //implements Movable
 {
@@ -69,14 +69,18 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
         ErrorMessage.printTst("X: " + x + "Y: " + y + "Diameter: " + (int) (2 * StdLib.GRAVITATIONAL_CONSTANT * mass.getValue()
                 * mass.getUnitMultiplier() / Math.pow(StdLib.SPEED_OF_LIGHT, 2)), false);
     }
-    //TODO make the method more adaptive so Gravity can work
-    //Keeps the black hole in the center for now
+    //TODO double check gravity math
     public void updatePosition()
     {
+    	/*
         this.x = (BlackHoleSimulator.window.getWidth()/2)-((2 * StdLib.GRAVITATIONAL_CONSTANT *
             (mass.getValue() * mass.getUnitMultiplier()))/Math.pow(StdLib.SPEED_OF_LIGHT, 2));
         this.y = (BlackHoleSimulator.window.getHeight()/2)-((2 * StdLib.GRAVITATIONAL_CONSTANT *
             (mass.getValue() * mass.getUnitMultiplier()))/Math.pow(StdLib.SPEED_OF_LIGHT, 2));
+            */
+    	this.x =+ this.getVelocity().getVectorMatrixNotation()[0];
+    	this.y =+ this.getVelocity().getVectorMatrixNotation()[1];
+        this.calculateHitbox();
     }
     //change the diameter of the black hole based on the current mass
     private void updateDiameter(Mass mass)
@@ -126,7 +130,6 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
 	}
 	
 	@Override
-	//TODO may need to learn to handle multiple collssions
 	public int hasCollided() 
 	{
 		int temp = -1;

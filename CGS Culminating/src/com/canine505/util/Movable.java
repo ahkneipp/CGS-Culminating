@@ -26,6 +26,8 @@ public interface Movable
 	
 	public Rectangle getHitbox();
 	
+	public String getID();
+	
 	//////////
 	//fields//
 	//////////

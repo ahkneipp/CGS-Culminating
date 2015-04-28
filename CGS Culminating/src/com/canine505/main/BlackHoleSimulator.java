@@ -17,6 +17,10 @@ import javax.swing.JComponent;
 
 /**
  * Created by Alex Kneipp on 1/30/15
+ * Viewer class for Alex Kneipp's CGS Culminating project.
+ * The class assumes every computation equals one second.
+ * Gravity is calculated using values in the UnitLib library, and methods required by the Movable interface.
+ * The movable interface is implemented by the MatterComponent class, which every movable component extends.
  */
 public class BlackHoleSimulator
 {
@@ -61,7 +65,7 @@ public class BlackHoleSimulator
         ErrorMessage.printTst(String.valueOf(Double.MAX_VALUE),false);
     }
     private static final String VERSION = "1.22 Indev";
-    private static final String LAST_UPDATED = "4/25/15";
+    private static final String LAST_UPDATED = "4/28/15";
     public static final JFrame window = new JFrame();
     public static final ArrayList<MatterComponent> components = new ArrayList<MatterComponent>(5);
 }
