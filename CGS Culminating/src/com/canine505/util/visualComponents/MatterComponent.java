@@ -108,6 +108,10 @@ public class MatterComponent extends JComponent implements Movable
     	this.y =+ this.getVelocity().getVectorMatrixNotation()[1];
         this.calculateHitbox();
     }
+    public Mass getMass()
+    {
+    	return mass;
+    }
 	//end methods
 	protected Mass mass = null;
 	protected double radius = 0.0;

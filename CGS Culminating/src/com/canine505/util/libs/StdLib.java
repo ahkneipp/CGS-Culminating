@@ -1,5 +1,8 @@
 package com.canine505.util.libs;
 
+import com.canine505.util.PhysicsVector;
+import com.canine505.util.visualComponents.MatterComponent;
+
 /**
  * Created by Alex Kneipp on 2/26/2015.
  */
@@ -21,6 +24,12 @@ public class StdLib
         else
             return false;
     }
+    public static PhysicsVector calculateGravity(MatterComponent m1, MatterComponent m2)
+    {
+    	return new PhysicsVector((StdLib.GRAVITATIONAL_CONSTANT * m1.getMass().getValue() * m2.getMass().getValue())
+    			/ (Math.sqrt(Math.pow(m2.getX() - m1.getX(), 2) + (Math.pow(m2.getY() + m1.getY(), 2)))));
+    }
+    //unit in n-m/kg^2
     public static final double GRAVITATIONAL_CONSTANT = 6.67384 * Math.pow(10,-11);
     public static final String GRAVITATIONAL_CONSTANT_UNIT = "m^3 Kg^-1 s^-2";
     public static final double SPEED_OF_LIGHT = 299792458;

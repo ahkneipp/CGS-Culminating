@@ -72,12 +72,14 @@ Time Worked: 2.5 hours
 	~Changed component array list to type movable so things work
 	
 -Version 1.22 Indev - 4/25/15, 4/27/15, 4/28/15
-Time Worked: 4 hours
+Time Worked: 4.5 hours
 	+Added component ID's for identification of type
 	+Added RandomWithRange method to Random color generator to fix runtime exceptions (lots).
 	+Added constructor to PhysicsVector to make vector updates easier.
 	+Added more descriptive Javadoc comments to BlackHoleSimulator for those who don't understand the code.
 	+Finished implementing movable interface methods
+	+Added calculateGravtiy method in StdLib
+	+Finished updateVelocity method in BlackHoleComponent
 	-Removed Mass field from movable again for the restructure
 	~Made updatePosition in BlackHoleComponent work with gravity, but not tested yet.
 	~Undeprecated setVectorMatrixNotation();

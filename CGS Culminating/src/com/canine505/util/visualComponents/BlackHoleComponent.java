@@ -185,7 +185,10 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
 						this.vel.getVectorMatrixNotation()[1] + temp.vel.getVectorMatrixNotation()[1]});
 			}
 		}
-		this.vel = (Velocity) new PhysicsVector(new double[]{this.vel.getVectorMatrixNotation()[0] + /*TODO calculate Gravity*/1 ,
-				this.vel.getVectorMatrixNotation()[1] + /*TODO calculate Gravity*/1});
+		for(int i = 0; i < BlackHoleSimulator.components.size(); i++)
+		this.vel = (Velocity) new PhysicsVector(new double[]{this.vel.getVectorMatrixNotation()[0] +
+				StdLib.calculateGravity(this, BlackHoleSimulator.components.get(i)).getVectorMatrixNotation()[0],
+				this.vel.getVectorMatrixNotation()[1] +	
+				StdLib.calculateGravity(this, BlackHoleSimulator.components.get(i)).getVectorMatrixNotation()[1]});
 	}
 }
