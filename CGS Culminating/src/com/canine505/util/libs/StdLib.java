@@ -26,8 +26,10 @@ public class StdLib
     }
     public static PhysicsVector calculateGravity(MatterComponent m1, MatterComponent m2)
     {
+    	//TODO check if the atan does weird things to gravity
     	return new PhysicsVector((StdLib.GRAVITATIONAL_CONSTANT * m1.getMass().getValue() * m2.getMass().getValue())
-    			/ (Math.sqrt(Math.pow(m2.getX() - m1.getX(), 2) + (Math.pow(m2.getY() + m1.getY(), 2)))));
+    			/ (Math.sqrt(Math.pow(m2.getX() - m1.getX(), 2) + (Math.pow(m2.getY() + m1.getY(), 2)))),
+    			Math.atan((m1.getY()-m2.getY())/(m1.getX()-m2.getX())));
     }
     //unit in n-m/kg^2
     public static final double GRAVITATIONAL_CONSTANT = 6.67384 * Math.pow(10,-11);
