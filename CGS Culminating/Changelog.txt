@@ -86,3 +86,4 @@ Time Worked: 4.5 hours
 	~Moved methods Implemented by Movable to Matter Component so I don't have to define them in every Movable class
 	~Fixed a bunch of spelling mistakes in comments
 	~Restructured hierarchy tree for the components
+	~Fixed some null pointer exceptions.

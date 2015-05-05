@@ -106,9 +106,17 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
     /**
      * @return The velocity of the black hole
      */
-    public Velocity getVelocity()
+    public PhysicsVector getVelocity()
     {
-    	return this.vel;
+    	if(this.vel != null)
+    	{
+    		return this.vel;
+    	}
+    	else
+    	{
+    		ErrorMessage.printErr("Vel was null, returning blank vector. ", true);
+    		return new PhysicsVector();
+    	}
     }
     
 	@Override

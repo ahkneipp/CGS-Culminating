@@ -16,7 +16,7 @@ public interface Movable
 	//should change x and y based on gravitational forces from other components and current velocity
 	public void updatePosition();
 	//should return the velocity in the manner of a velocity object
-	public Velocity getVelocity();
+	public PhysicsVector getVelocity();
 	//should change the current velocity of the object based on collisions and the gravity of other objects
 	public void updateVelocity();
 	//should return the index of the object with which it collided if it has collided with another component and -1 if it has not

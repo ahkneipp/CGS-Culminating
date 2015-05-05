@@ -83,7 +83,7 @@ public class MatterComponent extends JComponent implements Movable
     /**
      * @return The velocity of the component
      */
-    public Velocity getVelocity()
+    public PhysicsVector getVelocity()
     {
     	return this.vel;
     }    

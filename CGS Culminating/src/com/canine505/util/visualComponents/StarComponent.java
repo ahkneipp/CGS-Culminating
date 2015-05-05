@@ -42,7 +42,7 @@ public class StarComponent extends MatterComponent //implements Movable
 		
 	}
 	@Override
-	public Velocity getVelocity() {
+	public PhysicsVector getVelocity() {
 		// TODO Auto-generated method stub
 		return null;
 	}

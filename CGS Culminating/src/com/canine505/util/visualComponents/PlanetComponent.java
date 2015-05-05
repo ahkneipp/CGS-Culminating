@@ -6,7 +6,7 @@ package com.canine505.util.visualComponents;
 import java.awt.Rectangle;
 
 import com.canine505.util.Movable;
-import com.canine505.util.Velocity;
+import com.canine505.util.PhysicsVector;
 /**
  * @author Alex Kneipp
  *
@@ -27,7 +27,7 @@ public class PlanetComponent extends MatterComponent //implements Movable
 	}
 
 	@Override
-	public Velocity getVelocity() {
+	public PhysicsVector getVelocity() {
 		// TODO Auto-generated method stub
 		return null;
 	}
