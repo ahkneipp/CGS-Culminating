@@ -24,13 +24,13 @@ public class StdLib
         else
             return false;
     }
+    
     //TODO figure out which object it calculates the vector for, M1 or M2
     public static PhysicsVector calculateGravity(MatterComponent m1, MatterComponent m2)
     {
-    	//TODO check if the atan does weird things to gravity
     	return new PhysicsVector((StdLib.GRAVITATIONAL_CONSTANT * m1.getMass().getValue() * m2.getMass().getValue())
     			/ (Math.sqrt(Math.pow(m2.getX() - m1.getX(), 2) + (Math.pow(m2.getY() + m1.getY(), 2)))),
-    			Math.atan((m1.getY()-m2.getY())/(m1.getX()-m2.getX())));
+    			Math.toDegrees(Math.atan((m1.getY()-m2.getY())/(m1.getX()-m2.getX()))));
     }
     
     public static PhysicsVector calculateGravity(double m1, double m2, double[] xs, double[]ys)
