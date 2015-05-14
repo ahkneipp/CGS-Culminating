@@ -10,7 +10,7 @@ public class RandomColor
 {
 	public static Color getRandomColor()
 	{
-		return colors[randomWithRange(0,13)];
+		return colors[randomWithRange(0,12)];
 	}
 	static int randomWithRange(int min, int max)
 	{

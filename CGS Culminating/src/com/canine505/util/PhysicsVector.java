@@ -194,7 +194,7 @@ public class PhysicsVector
    * Sets a PhysicsVector based on two component vectors at 0 and 90 degrees.
    * @param vectorMatrix A double array with 2 elements, [0] is the x (0 degree) vector and [1] is the y (90 degree vector)
    */
-  //TODO correct direction math, if incorrect
+  //TODO correct direction ifs so h its for the range Pi/2 to -Pi/2 not 0 to Pi
   public void setVectorMatrixNotation(double[] vectorMatrix)
   {
 	  this.magnitude = Math.sqrt(Math.pow(vectorMatrix[0],2) + Math.pow(vectorMatrix[1], 2));

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.canine505.util.ErrorMessage;
 import com.canine505.util.Mass;
 import com.canine505.util.Movable;
+import com.canine505.util.libs.StdLib;
 import com.canine505.util.libs.UnitLib;
 import com.canine505.util.visualComponents.BlackHoleComponent;
 import com.canine505.util.visualComponents.MatterComponent;
@@ -63,6 +64,10 @@ public class BlackHoleSimulator
         window.setVisible(true);
         //Testing stuff goes here
         ErrorMessage.printTst(String.valueOf(Double.MAX_VALUE),false);
+        double[] x = new double[] {0,90}; 
+        double[] y = new double[] {0,90};
+        ErrorMessage.printTst("FOG: <" + StdLib.calculateGravity(1000000.0, 1000000.0, x,y).getVectorMatrixNotation()[0] + ", " +  
+        		StdLib.calculateGravity(1000000.0, 1000000.0, x,y).getVectorMatrixNotation()[1] + ">", false);
     }
     private static final String VERSION = "1.22 Indev";
     private static final String LAST_UPDATED = "4/28/15";
