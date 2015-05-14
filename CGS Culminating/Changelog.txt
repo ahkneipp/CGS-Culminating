@@ -71,8 +71,8 @@ Time Worked: 2.5 hours
 	+Started implementing updateVelocity on BlackHoleComponent
 	~Changed component array list to type movable so things work
 	
--Version 1.22 Indev - 4/25/15, 4/27/15, 4/28/15, 5/13/15
-Time Worked: 5.5 hours
+-Version 1.22 Indev - 4/25/15, 4/27/15, 4/28/15, 5/13/15, 5/14/15
+Time Worked: 6.5 hours
 //TODO move calclulate Gravity to MatterComponent from STDLIB
 	+Added component ID's for identification of type
 	+Added RandomWithRange method to Random color generator to fix runtime exceptions (lots).
@@ -82,6 +82,7 @@ Time Worked: 5.5 hours
 	+Added calculateGravtiy method in StdLib
 	+Finished updateVelocity method in BlackHoleComponent
 	-Removed Mass field from movable again for the restructure
+	~Fixed more exceptions and fixed a bunch of math errors
 	~Made updatePosition in BlackHoleComponent work with gravity, but not tested yet.
 	~Undeprecated setVectorMatrixNotation();
 	~Moved methods Implemented by Movable to Matter Component so I don't have to define them in every Movable class
