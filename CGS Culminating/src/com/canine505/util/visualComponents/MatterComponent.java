@@ -113,6 +113,21 @@ public class MatterComponent extends JComponent implements Movable
     {
     	return mass;
     }
+    
+	@Override
+	public void updateVelocity() 
+	{
+		double[] temp = new double[2];
+		temp = vel.getVectorMatrixNotation();
+		//TODO finish method
+		for(int i = 0; i < BlackHoleSimulator.components.size(); i++)
+		{
+			//TODO fix calculation to work on acceleration, not force in newtons (divide by mass)
+			this.vel =(Velocity) new PhysicsVector((temp[0] + StdLib.calculateGravity(this, 
+					BlackHoleSimulator.components.get(i)).getVectorMatrixNotation()[0]), temp[1] + StdLib.calculateGravity(this, 
+					BlackHoleSimulator.components.get(i)).getVectorMatrixNotation()[1]);
+		}
+	}
 	//end methods
 	protected Mass mass = null;
 	protected double radius = 0.0;
@@ -128,11 +143,5 @@ public class MatterComponent extends JComponent implements Movable
 	
 	//The following methods are simply overridden by the sub classes until I can get around to standardizing them
 
-	@Override
-	public void updateVelocity() 
-	{
-		//TODO finish method
-		this.vel =(Velocity) new PhysicsVector();
-		
-	}
+
 }

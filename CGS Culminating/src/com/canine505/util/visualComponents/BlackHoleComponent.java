@@ -172,6 +172,7 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
 	 * the larger. 
 	 */
 	@Override
+	//TODO check
 	public void updateVelocity() 
 	{
 		//check if the black hole has collided with anything
