@@ -104,8 +104,9 @@ public class MatterComponent extends JComponent implements Movable
         this.y = (BlackHoleSimulator.window.getHeight()/2)-((2 * StdLib.GRAVITATIONAL_CONSTANT *
             (mass.getValue() * mass.getUnitMultiplier()))/Math.pow(StdLib.SPEED_OF_LIGHT, 2));
             */
-    	this.x =+ this.getVelocity().getVectorMatrixNotation()[0];
-    	this.y =+ this.getVelocity().getVectorMatrixNotation()[1];
+    	//@TESTTAG
+    	this.x =+ this.getVelocity().getVectorMatrixNotation()[0] * .1;
+    	this.y =+ this.getVelocity().getVectorMatrixNotation()[1] * .1;
         this.calculateHitbox();
     }
     public Mass getMass()
@@ -128,8 +129,10 @@ public class MatterComponent extends JComponent implements Movable
 	//The following methods are simply overridden by the sub classes until I can get around to standardizing them
 
 	@Override
-	public void updateVelocity() {
-		// TODO Auto-generated method stub
+	public void updateVelocity() 
+	{
+		//TODO finish method
+		this.vel =(Velocity) new PhysicsVector();
 		
 	}
 }

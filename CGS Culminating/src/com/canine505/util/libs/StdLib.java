@@ -25,23 +25,22 @@ public class StdLib
             return false;
     }
     
-    //TODO figure out which object it calculates the vector for, M1 or M2
     public static PhysicsVector calculateGravity(MatterComponent m1, MatterComponent m2)
     {
-    	return new PhysicsVector((StdLib.GRAVITATIONAL_CONSTANT * m1.getMass().getValue() * m2.getMass().getValue())
-    			/ (Math.sqrt(Math.pow(m2.getX() - m1.getX(), 2) + (Math.pow(m2.getY() + m1.getY(), 2)))),
-    			Math.toDegrees(Math.atan((m1.getY()-m2.getY())/(m1.getX()-m2.getX()))));
+    	return new PhysicsVector(Math.toDegrees(Math.atan((m1.getY()-m2.getY())/(m1.getX()-m2.getX()))),(StdLib.GRAVITATIONAL_CONSTANT * m1.getMass().getValue() * m2.getMass().getValue())
+    			/ (Math.sqrt(Math.pow(m2.getX() - m1.getX(), 2) + (Math.pow(m2.getY() + m1.getY(), 2)))*1000)/*multiply by 1000 because 
+    			 * it needs to be converted to meters from the KM handed to it */);
     }
     
     public static PhysicsVector calculateGravity(double m1, double m2, double[] xs, double[]ys)
     {
 		return new PhysicsVector(Math.toDegrees(Math.atan((ys[0]-ys[1])/(xs[0]-xs[1]))), (StdLib.GRAVITATIONAL_CONSTANT * m1 * m2)
-    			/ (Math.sqrt(Math.pow(xs[1] - xs[0], 2) + (Math.pow(ys[1] + ys[0], 2)))));
+    			/ (Math.sqrt(Math.pow(xs[1] - xs[0], 2) + (Math.pow(ys[1] + ys[0], 2)))*1000));
     	
     }
     //unit in n-m/kg^2
     public static final double GRAVITATIONAL_CONSTANT = 6.67384 * Math.pow(10,-11);
     public static final String GRAVITATIONAL_CONSTANT_UNIT = "m^3 Kg^-1 s^-2";
-    public static final double SPEED_OF_LIGHT = 299792458;
+    public static final double SPEED_OF_LIGHT = 299792458.0;
     public static final String SPEED_OF_LIGHT_UNIT = "m/s";
 }
