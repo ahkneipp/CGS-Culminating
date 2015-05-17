@@ -27,6 +27,12 @@ public class Mass extends Scalar
         //sets value and divides it out by unit multiplier to normalize it into the unit
         this.setValue(value/unitMultiplier);
     }
+    public Mass(double value)
+    {
+    	this.setValue(value);
+    	this.unit = new Unit(1, null);
+    }
+    
     public double getUnitMultiplier()
     {
         return unit.getUnitMultiplier();

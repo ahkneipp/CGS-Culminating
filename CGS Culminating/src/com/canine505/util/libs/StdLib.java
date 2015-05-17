@@ -36,7 +36,8 @@ public class StdLib
     public static PhysicsVector calculateGravity(double m1, double m2, double[] xs, double[]ys)
     {
 		return new PhysicsVector(Math.toDegrees(Math.atan((ys[0]-ys[1])/(xs[0]-xs[1]))), (StdLib.GRAVITATIONAL_CONSTANT * m1 * m2)
-    			/ (Math.sqrt(Math.pow(xs[1] - xs[0], 2) + (Math.pow(ys[1] + ys[0], 2)))*1000));
+    			/ (Math.sqrt(Math.pow(xs[1] - xs[0], 2) + (Math.pow(ys[1] + ys[0], 2)))*1000)/*multiply by 1000 because 
+    			 * it needs to be converted to meters from the KM handed to it */);
     	
     }
     //unit in n-m/kg^2

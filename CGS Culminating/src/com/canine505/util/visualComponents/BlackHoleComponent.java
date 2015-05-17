@@ -1,8 +1,10 @@
 package com.canine505.util.visualComponents;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+
 
 //import javax.swing.JComponent;
 import com.canine505.util.ErrorMessage;
@@ -59,16 +61,18 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
         //turn the standard graphics argument into the improved graphics2D object
         Graphics2D g2d = (Graphics2D) g;
         updatePosition();
+        g2d.setColor(Color.BLACK);
         //g2d.fillOval(10,10,70,70);
         //calculate the schwarzchild radius of the black hole and make that the diameter
-        //TODO figure out size scaling
-        g2d.drawOval((int)this.x,(int)this.y,(int)(2 * StdLib.GRAVITATIONAL_CONSTANT *
+        //TODO make sure the equation for schwarzchild radius returns in KM
+        g2d.fillOval((int)this.x,(int)this.y,(int)(2 * StdLib.GRAVITATIONAL_CONSTANT *
             mass.getValue() * mass.getUnitMultiplier() /Math.pow(StdLib.SPEED_OF_LIGHT, 2)),
             (int)((2 * StdLib.GRAVITATIONAL_CONSTANT *(mass.getValue() * mass.getUnitMultiplier()))
                 /Math.pow(StdLib.SPEED_OF_LIGHT, 2)));
         ErrorMessage.printTst("X: " + x + "Y: " + y + "Diameter: " + (int) (2 * StdLib.GRAVITATIONAL_CONSTANT * mass.getValue()
                 * mass.getUnitMultiplier() / Math.pow(StdLib.SPEED_OF_LIGHT, 2)), false);
     }
+    
     //TODO double check gravity math
     public void updatePosition()
     {
@@ -78,8 +82,10 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
         this.y = (BlackHoleSimulator.window.getHeight()/2)-((2 * StdLib.GRAVITATIONAL_CONSTANT *
             (mass.getValue() * mass.getUnitMultiplier()))/Math.pow(StdLib.SPEED_OF_LIGHT, 2));
             */
-    	this.x =+ this.getVelocity().getVectorMatrixNotation()[0];
-    	this.y =+ this.getVelocity().getVectorMatrixNotation()[1];
+    	System.out.println("X: " + this.x);
+    	System.out.println("Y: " + this.y);
+    	this.x += (this.getVelocity().getVectorMatrixNotation()[0]/1000) * .1;
+    	this.y += (this.getVelocity().getVectorMatrixNotation()[1]/1000) * .1;
         this.calculateHitbox();
     }
     //change the diameter of the black hole based on the current mass
@@ -171,33 +177,34 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
 	 * If too black hole objects collide, I remove the smaller and merge it into
 	 * the larger. 
 	 */
-	@Override
-	//TODO check
-	public void updateVelocity() 
-	{
-		//check if the black hole has collided with anything
-		MatterComponent temp = BlackHoleSimulator.components.get(this.hasCollided());
-		if(this.hasCollided() != -1)
-		{
-			//TODO Check if finished
-			//TODO don't access the mass field directly
-			//TODO use ID to find out what type of component the colider is 
-			if(this.mass.getValue() >= temp.mass.getValue()||this.getID().equals("BHC-MC"));
-			{
-				//TODO actually update the actual velocity
-				//TODO hand do math to check accuracy of following statement
-				this.addMass(new Mass(temp.mass.getValue(),1));
-				//Remove the "temp" object from the array list because it was just swallowed by a black hole
-				BlackHoleSimulator.components.remove(BlackHoleSimulator.components.get(this.hasCollided()));
-				//update
-				this.vel.setVectorMatrixNotation(new double[] {temp.vel.getVectorMatrixNotation()[0] + this.vel.getVectorMatrixNotation()[0],
-						this.vel.getVectorMatrixNotation()[1] + temp.vel.getVectorMatrixNotation()[1]});
-			}
-		}
-		for(int i = 0; i < BlackHoleSimulator.components.size(); i++)
-		this.vel = (Velocity) new PhysicsVector(new double[]{this.vel.getVectorMatrixNotation()[0] +
-				StdLib.calculateGravity(this, BlackHoleSimulator.components.get(i)).getVectorMatrixNotation()[0],
-				this.vel.getVectorMatrixNotation()[1] +	
-				StdLib.calculateGravity(this, BlackHoleSimulator.components.get(i)).getVectorMatrixNotation()[1]});
-	}
+    //TODO temporary commenting out so the MatterComponent updateVelocity can take over
+//	@Override
+//	//TODO check
+//	public void updateVelocity() 
+//	{
+//		//check if the black hole has collided with anything
+//		MatterComponent temp = BlackHoleSimulator.components.get(this.hasCollided());
+//		if(this.hasCollided() != -1)
+//		{
+//			//TODO Check if finished
+//			//TODO don't access the mass field directly
+//			//TODO use ID to find out what type of component the collider is 
+//			if(this.mass.getValue() >= temp.mass.getValue()||this.getID().equals("BHC-MC"));
+//			{
+//				//TODO actually update the actual velocity
+//				//TODO hand do math to check accuracy of following statement
+//				this.addMass(new Mass(temp.mass.getValue(),1));
+//				//Remove the "temp" object from the array list because it was just swallowed by a black hole
+//				BlackHoleSimulator.components.remove(BlackHoleSimulator.components.get(this.hasCollided()));
+//				//update
+//				this.vel.setVectorMatrixNotation(new double[] {temp.vel.getVectorMatrixNotation()[0] + this.vel.getVectorMatrixNotation()[0],
+//						this.vel.getVectorMatrixNotation()[1] + temp.vel.getVectorMatrixNotation()[1]});
+//			}
+//		}
+//		for(int i = 0; i < BlackHoleSimulator.components.size(); i++)
+//		this.vel = (Velocity) new PhysicsVector(new double[]{this.vel.getVectorMatrixNotation()[0] +
+//				StdLib.calculateGravity(this, BlackHoleSimulator.components.get(i)).getVectorMatrixNotation()[0],
+//				this.vel.getVectorMatrixNotation()[1] +	
+//				StdLib.calculateGravity(this, BlackHoleSimulator.components.get(i)).getVectorMatrixNotation()[1]});
+//	}
 }

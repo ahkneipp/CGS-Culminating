@@ -4,10 +4,10 @@
 package com.canine505.util.visualComponents;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
-
 import javax.swing.JComponent;
-
 import com.canine505.main.BlackHoleSimulator;
 import com.canine505.util.*;
 import com.canine505.util.libs.StdLib;
@@ -40,6 +40,15 @@ public class MatterComponent extends JComponent implements Movable
 	}
 	//end Constructors
 	//methods
+	public void paintComponent(Graphics g)
+	{
+		Graphics2D g2d = (Graphics2D) g;
+		this.updatePosition();
+		g2d.setColor(this.color);
+		g2d.fillOval((int)this.x,(int)this.y, (int)(2*this.radius), (int)(2*this.radius));
+		this.updateVelocity();
+	}
+
 	/**
 	 * @return The ID string of the class.  Formatted so that the first few characters are the class name and the last few are
 	 * the initials of the immediate superclass.
@@ -105,8 +114,8 @@ public class MatterComponent extends JComponent implements Movable
             (mass.getValue() * mass.getUnitMultiplier()))/Math.pow(StdLib.SPEED_OF_LIGHT, 2));
             */
     	//@TESTTAG
-    	this.x =+ this.getVelocity().getVectorMatrixNotation()[0] * .1;
-    	this.y =+ this.getVelocity().getVectorMatrixNotation()[1] * .1;
+    	this.x += (this.getVelocity().getVectorMatrixNotation()[0]/1000) * .1;
+    	this.y += (this.getVelocity().getVectorMatrixNotation()[1]/1000) * .1;
         this.calculateHitbox();
     }
     public Mass getMass()
@@ -119,13 +128,14 @@ public class MatterComponent extends JComponent implements Movable
 	{
 		double[] temp = new double[2];
 		temp = vel.getVectorMatrixNotation();
-		//TODO finish method
 		for(int i = 0; i < BlackHoleSimulator.components.size(); i++)
 		{
-			//TODO fix calculation to work on acceleration, not force in newtons (divide by mass)
-			this.vel =(Velocity) new PhysicsVector((temp[0] + StdLib.calculateGravity(this, 
-					BlackHoleSimulator.components.get(i)).getVectorMatrixNotation()[0]), temp[1] + StdLib.calculateGravity(this, 
-					BlackHoleSimulator.components.get(i)).getVectorMatrixNotation()[1]);
+			this.vel =new Velocity((temp[0] + StdLib.calculateGravity(this, 
+					BlackHoleSimulator.components.get(i)).getVectorMatrixNotation()[0]) / 
+					BlackHoleSimulator.components.get(i).getMass().getValue(), 
+					temp[1] + StdLib.calculateGravity(this, 
+					BlackHoleSimulator.components.get(i)).getVectorMatrixNotation()[1] /
+					BlackHoleSimulator.components.get(i).getMass().getValue());
 		}
 	}
 	//end methods

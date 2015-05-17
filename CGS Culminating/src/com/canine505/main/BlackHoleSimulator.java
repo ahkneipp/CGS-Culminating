@@ -1,11 +1,17 @@
 package com.canine505.main;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import com.canine505.util.ErrorMessage;
 import com.canine505.util.Mass;
 import com.canine505.util.Movable;
+import com.canine505.util.PhysicsVector;
+import com.canine505.util.Velocity;
 import com.canine505.util.libs.StdLib;
 import com.canine505.util.libs.UnitLib;
 import com.canine505.util.visualComponents.BlackHoleComponent;
@@ -14,6 +20,9 @@ import com.canine505.util.visualComponents.MatterComponent;
 import javax.swing.JFrame;
 //import javax.swing.JPanel;
 import javax.swing.JComponent;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+import javax.swing.OverlayLayout;
 
 
 /**
@@ -30,7 +39,7 @@ public class BlackHoleSimulator
         //TODO set to false before any presentation
         ErrorMessage.setPrintErrorStatements(true);
         //TODO set to false before any presentation
-        ErrorMessage.setPrintTestingStatements(true);
+        ErrorMessage.setPrintTestingStatements(false);
         //Sets the default multiplier to handle larger numbers
         com.canine505.util.Unit.setDefaultMultipler(1000.0);
         System.out.println("Black Hole Simulator");
@@ -51,26 +60,31 @@ public class BlackHoleSimulator
         System.out.print("Version: " + VERSION);
         System.out.println(", Last updated: " + LAST_UPDATED);
         //testing mass class and black hole component calculations
-        components.add(new BlackHoleComponent(new Mass(1, (Double)UnitLib.STELLAR_MASS.getValue()[0])));
-        //create test window of size 500^2 pixels, add a black hole component and set to visible
+        galaxyComponent.setLayout(new BorderLayout());
+        window.getContentPane().add(galaxyComponent);
+        galaxyComponent.add(new BlackHoleComponent(50,50,new Mass(10000000000000000000000000000000.0),new Velocity(0,-10)));
+        galaxyComponent.add(new BlackHoleComponent(50, 100, new Mass(10000000000000000000000000000000.0),new Velocity(0,10)));
+       	//create test window of size 500^2 pixels, add a black hole component and set to visible
+        //window.setLayout(new FlowLayout());
         window.setSize(500,500);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //TODO increase efficiency so it doesn't iterate through the whole ArrayList every time you want to add something.
-        for(int i = 0; i < components.size(); i++)
-        {
-        	window.add((JComponent) components.get(i));
-        }
-        //ErrorMessage.printErr(new Mass(1,UnitLib.ONE_SOLAR_MASS.getValue()).getValue(),true);
         window.setVisible(true);
-        //Testing stuff goes here
-        ErrorMessage.printTst(String.valueOf(Double.MAX_VALUE),false);
-        double[] x = new double[] {0,90}; 
-        double[] y = new double[] {0,90};
-        ErrorMessage.printTst("FOG: <" + StdLib.calculateGravity(1000000.0, 1000000.0, x,y).getVectorMatrixNotation()[0] + ", " +  
+        //main loop
+        while(true)
+        {
+            //window.validate();
+        	window.repaint();
+        	//Testing stuff goes here
+        	ErrorMessage.printTst(String.valueOf(Double.MAX_VALUE),false);
+        	double[] x = new double[] {0,90}; 
+        	double[] y = new double[] {0,90};
+        	ErrorMessage.printTst("FOG: <" + StdLib.calculateGravity(1000000.0, 1000000.0, x,y).getVectorMatrixNotation()[0] + ", " +  
         		StdLib.calculateGravity(1000000.0, 1000000.0, x,y).getVectorMatrixNotation()[1] + ">", false);
+        }
     }
     private static final String VERSION = "1.22 Indev";
     private static final String LAST_UPDATED = "4/28/15";
+    private static final JPanel galaxyComponent = new JPanel();
     public static final JFrame window = new JFrame();
     public static final ArrayList<MatterComponent> components = new ArrayList<MatterComponent>(5);
 }

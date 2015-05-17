@@ -12,7 +12,26 @@ import java.lang.System;
  */
 public class Velocity extends PhysicsVector
 {
-
+	public Velocity(double[] matrix)
+	{
+		  this.magnitude = Math.sqrt(Math.pow(matrix[0],2) + Math.pow(matrix[1], 2));
+		  if(matrix[0] < 0.0)
+		  {
+				  this.direction = Math.toDegrees(Math.atan(matrix[1]/ matrix[0])) +180.0;
+		  }
+		  //if vectorMatrix[0] is positive
+		  else
+		  {
+				  this.direction = Math.toDegrees(Math.atan(matrix[1]/matrix[0]));
+		  }
+	}
+	
+	public Velocity(double directionDegrees, double speed)
+	{
+	  direction = directionDegrees;
+	  magnitude = speed;
+	}
+	
     public Velocity(double direction, double magnitude, Unit unit)
     {
         //print what the method gets as a multiplier for testing purposes
@@ -20,6 +39,7 @@ public class Velocity extends PhysicsVector
         this.direction = direction;
         this.magnitude = magnitude;
     }
+    
     public double getUnitMultiplier()
     {
         return unit.getUnitMultiplier()/Unit.getDefaultMultiplier();
