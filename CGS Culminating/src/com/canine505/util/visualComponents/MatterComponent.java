@@ -4,10 +4,13 @@
 package com.canine505.util.visualComponents;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+
 import javax.swing.JComponent;
+
 import com.canine505.main.BlackHoleSimulator;
 import com.canine505.util.*;
 import com.canine505.util.libs.StdLib;
@@ -48,7 +51,11 @@ public class MatterComponent extends JComponent implements Movable
 		g2d.fillOval((int)this.x,(int)this.y, (int)(2*this.radius), (int)(2*this.radius));
 		this.updateVelocity();
 	}
-
+	
+	public Dimension getPreferredSize()
+	{
+		return new Dimension((int)(radius*2.0),(int)(radius*2.0));
+	}
 	/**
 	 * @return The ID string of the class.  Formatted so that the first few characters are the class name and the last few are
 	 * the initials of the immediate superclass.

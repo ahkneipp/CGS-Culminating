@@ -1,9 +1,12 @@
 package com.canine505.util.visualComponents;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+
+
 
 
 //import javax.swing.JComponent;
@@ -26,13 +29,33 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
 	////////////////
 	//Constructors//
 	////////////////
-    public BlackHoleComponent(int initialX, int initialY, Mass initialMass, Velocity vel)
+    public BlackHoleComponent()
+    {
+    	//create a black hole with a mass of 1000 kilograms
+    	Mass initialMass = new Mass(1000.00);
+    	this.mass = initialMass;
+        this.vel = null;
+        //set the initial position to the middle of the screen
+        this.x = (BlackHoleSimulator.window.getWidth()/2)-((2 * StdLib.GRAVITATIONAL_CONSTANT *
+            (initialMass.getValue() * initialMass.getUnitMultiplier()))/Math.pow(StdLib.SPEED_OF_LIGHT, 2));
+        this.y = (BlackHoleSimulator.window.getHeight()/2)+((2 * StdLib.GRAVITATIONAL_CONSTANT *
+            (initialMass.getValue() * initialMass.getUnitMultiplier()))/Math.pow(StdLib.SPEED_OF_LIGHT, 2));
+        //set the preferred size to the schwarzchild radius for a given mass
+        this.setPreferredSize(new Dimension((int)(2 * StdLib.GRAVITATIONAL_CONSTANT *
+            mass.getValue() * mass.getUnitMultiplier() /Math.pow(StdLib.SPEED_OF_LIGHT, 2)),(int)(2 * StdLib.GRAVITATIONAL_CONSTANT *
+            mass.getValue() * mass.getUnitMultiplier() /Math.pow(StdLib.SPEED_OF_LIGHT, 2))));
+    }	
+	public BlackHoleComponent(int initialX, int initialY, Mass initialMass, Velocity vel)
     {
         //set the starting position and mass of the black hole.
         this.x = initialX;
         this.y = initialY;
         this.mass = initialMass;
         this.vel = vel;
+      //set the preferred size to the schwarzchild radius of the black hole
+        this.setPreferredSize(new Dimension((int)(2 * StdLib.GRAVITATIONAL_CONSTANT *
+                mass.getValue() * mass.getUnitMultiplier() /Math.pow(StdLib.SPEED_OF_LIGHT, 2)),(int)(2 * StdLib.GRAVITATIONAL_CONSTANT *
+                mass.getValue() * mass.getUnitMultiplier() /Math.pow(StdLib.SPEED_OF_LIGHT, 2))));
     }
     //presumes you want the black hole at the center of the screen
     public BlackHoleComponent(Mass initialMass)
@@ -44,6 +67,10 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
             (initialMass.getValue() * initialMass.getUnitMultiplier()))/Math.pow(StdLib.SPEED_OF_LIGHT, 2));
         this.y = (BlackHoleSimulator.window.getHeight()/2)+((2 * StdLib.GRAVITATIONAL_CONSTANT *
             (initialMass.getValue() * initialMass.getUnitMultiplier()))/Math.pow(StdLib.SPEED_OF_LIGHT, 2));
+      //set the preferred size to the schwarzchild radius of the black hole
+        this.setPreferredSize(new Dimension((int)(2 * StdLib.GRAVITATIONAL_CONSTANT *
+                mass.getValue() * mass.getUnitMultiplier() /Math.pow(StdLib.SPEED_OF_LIGHT, 2)),(int)(2 * StdLib.GRAVITATIONAL_CONSTANT *
+                mass.getValue() * mass.getUnitMultiplier() /Math.pow(StdLib.SPEED_OF_LIGHT, 2))));
     }
     ////////////////////
     //End Constructors//
@@ -60,6 +87,10 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
     {
         //turn the standard graphics argument into the improved graphics2D object
         Graphics2D g2d = (Graphics2D) g;
+        //set the preferred size to the schwarzchild radius of the black hole
+        this.setPreferredSize(new Dimension((int)(2 * StdLib.GRAVITATIONAL_CONSTANT *
+                mass.getValue() * mass.getUnitMultiplier() /Math.pow(StdLib.SPEED_OF_LIGHT, 2)),(int)(2 * StdLib.GRAVITATIONAL_CONSTANT *
+                mass.getValue() * mass.getUnitMultiplier() /Math.pow(StdLib.SPEED_OF_LIGHT, 2))));
         updatePosition();
         g2d.setColor(Color.BLACK);
         //g2d.fillOval(10,10,70,70);
@@ -73,6 +104,7 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
                 * mass.getUnitMultiplier() / Math.pow(StdLib.SPEED_OF_LIGHT, 2)), false);
     }
     
+	
     //TODO double check gravity math
     public void updatePosition()
     {
@@ -154,6 +186,21 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
 				temp = i;
 		}
 		return temp;
+	}
+	//temp updateVelocity method to replace the other one below the fields
+	public void updateVelocity() 
+	{
+		double[] temp = new double[2];
+		temp = vel.getVectorMatrixNotation();
+		for(int i = 0; i < BlackHoleSimulator.components.size(); i++)
+		{
+			this.vel =new Velocity((temp[0] + StdLib.calculateGravity(this, 
+					BlackHoleSimulator.components.get(i)).getVectorMatrixNotation()[0]) / 
+					BlackHoleSimulator.components.get(i).getMass().getValue(), 
+					temp[1] + StdLib.calculateGravity(this, 
+					BlackHoleSimulator.components.get(i)).getVectorMatrixNotation()[1] /
+					BlackHoleSimulator.components.get(i).getMass().getValue());
+		}
 	}
 	
     
