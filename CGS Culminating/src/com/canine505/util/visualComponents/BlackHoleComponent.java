@@ -5,10 +5,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-
-
-
-
 //import javax.swing.JComponent;
 import com.canine505.util.ErrorMessage;
 import com.canine505.util.Mass;
@@ -44,6 +40,8 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
         this.setPreferredSize(new Dimension((int)(2 * StdLib.GRAVITATIONAL_CONSTANT *
             mass.getValue() * mass.getUnitMultiplier() /Math.pow(StdLib.SPEED_OF_LIGHT, 2)),(int)(2 * StdLib.GRAVITATIONAL_CONSTANT *
             mass.getValue() * mass.getUnitMultiplier() /Math.pow(StdLib.SPEED_OF_LIGHT, 2))));
+        //set the minimum size of the object to one by one
+        this.setMinimumSize(new Dimension(1,1));
     }	
 	public BlackHoleComponent(int initialX, int initialY, Mass initialMass, Velocity vel)
     {
@@ -56,6 +54,8 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
         this.setPreferredSize(new Dimension((int)(2 * StdLib.GRAVITATIONAL_CONSTANT *
                 mass.getValue() * mass.getUnitMultiplier() /Math.pow(StdLib.SPEED_OF_LIGHT, 2)),(int)(2 * StdLib.GRAVITATIONAL_CONSTANT *
                 mass.getValue() * mass.getUnitMultiplier() /Math.pow(StdLib.SPEED_OF_LIGHT, 2))));
+      //set the minimum size of the object to one by one
+        this.setMinimumSize(new Dimension(1,1));
     }
     //presumes you want the black hole at the center of the screen
     public BlackHoleComponent(Mass initialMass)
@@ -71,6 +71,8 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
         this.setPreferredSize(new Dimension((int)(2 * StdLib.GRAVITATIONAL_CONSTANT *
                 mass.getValue() * mass.getUnitMultiplier() /Math.pow(StdLib.SPEED_OF_LIGHT, 2)),(int)(2 * StdLib.GRAVITATIONAL_CONSTANT *
                 mass.getValue() * mass.getUnitMultiplier() /Math.pow(StdLib.SPEED_OF_LIGHT, 2))));
+      //set the minimum size of the object to one by one
+        this.setMinimumSize(new Dimension(1,1));
     }
     ////////////////////
     //End Constructors//

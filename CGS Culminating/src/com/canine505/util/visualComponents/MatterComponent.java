@@ -52,10 +52,7 @@ public class MatterComponent extends JComponent implements Movable
 		this.updateVelocity();
 	}
 	
-	public Dimension getPreferredSize()
-	{
-		return new Dimension((int)(radius*2.0),(int)(radius*2.0));
-	}
+
 	/**
 	 * @return The ID string of the class.  Formatted so that the first few characters are the class name and the last few are
 	 * the initials of the immediate superclass.

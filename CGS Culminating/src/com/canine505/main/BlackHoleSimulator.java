@@ -1,7 +1,9 @@
 package com.canine505.main;
 
 import java.awt.BorderLayout;
+import java.awt.Canvas;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -39,7 +41,7 @@ public class BlackHoleSimulator
         //TODO set to false before any presentation
         ErrorMessage.setPrintErrorStatements(true);
         //TODO set to false before any presentation
-        ErrorMessage.setPrintTestingStatements(true);
+        ErrorMessage.setPrintTestingStatements(false);
         //Sets the default multiplier to handle larger numbers
         com.canine505.util.Unit.setDefaultMultipler(1000.0);
         System.out.println("Black Hole Simulator");
@@ -63,16 +65,23 @@ public class BlackHoleSimulator
         //galaxyComponent.setLayout(new FlowLayout());
         window.setLayout(new FlowLayout());
         //window.getContentPane().add(galaxyComponent);
-        window.add(new BlackHoleComponent(50,50,new Mass(10000000000000000000000000000000.0),new Velocity(0,-10)));
-        window.add(new BlackHoleComponent(50, 100, new Mass(10000000000000000000000000000000.0),new Velocity(0,10)));
-       	//create test window of size 500^2 pixels, add a black hole component and set to visible
+        components.add(new BlackHoleComponent(50, 50, new Mass(10000000000000000000000000000000.0),new Velocity(0,-10)));
+        components.add(new BlackHoleComponent(50, 100, new Mass(10000000000000000000000000000000.0),new Velocity(0,10)));
+       	//create test window of size 2500 pixels, add a black hole component and set to visible
         //window.setLayout(new FlowLayout());
+        for(int i = 0; i < components.size(); i++)
+        {
+        	//content.add(components.get(i));
+        	//window.getContentPane().add(components.get(i));
+        	System.out.println(window.getContentPane().getComponent(i));
+        }
         window.setSize(500,500);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setVisible(true);
         //main loop
         while(true)
         {
+        	//System.out.println(window.getComponent(0));
             //window.validate();
         	window.repaint();
         	//Testing stuff goes here
@@ -83,7 +92,8 @@ public class BlackHoleSimulator
     }
     private static final String VERSION = "1.22 Indev";
     private static final String LAST_UPDATED = "4/28/15";
-    private static final JPanel galaxyComponent = new JPanel();
+    //private static final JPanel galaxyComponent = new JPanel();
     public static final JFrame window = new JFrame();
+    public static final Canvas content = new Canvas();
     public static final ArrayList<MatterComponent> components = new ArrayList<MatterComponent>(5);
 }
