@@ -8,7 +8,6 @@ import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
-
 import com.canine505.util.ErrorMessage;
 import com.canine505.util.Mass;
 import com.canine505.util.Movable;
@@ -18,7 +17,6 @@ import com.canine505.util.libs.StdLib;
 import com.canine505.util.libs.UnitLib;
 import com.canine505.util.visualComponents.BlackHoleComponent;
 import com.canine505.util.visualComponents.MatterComponent;
-
 import javax.swing.JFrame;
 //import javax.swing.JPanel;
 import javax.swing.JComponent;
@@ -90,6 +88,9 @@ public class BlackHoleSimulator
         	double[] y = new double[] {0,90};
         }
     }
+    
+    //Hey tomorrow me, try using this link: http://stackoverflow.com/questions/20458671/how-to-add-multiple-jcomponents-to-a-jpanel
+    //to fix your graphics problem.  If it doesn't work, guess what!  You can't reach back in time to punck yourself/me in the past!
     private static final String VERSION = "1.22 Indev";
     private static final String LAST_UPDATED = "4/28/15";
     //private static final JPanel galaxyComponent = new JPanel();
