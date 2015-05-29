@@ -71,8 +71,8 @@ Time Worked: 2.5 hours
 	+Started implementing updateVelocity on BlackHoleComponent
 	~Changed component array list to type movable so things work
 	
--Version 1.22 Indev - 4/25/15, 4/27/15, 4/28/15, 5/13/15, 5/14/15, 5/15/15, 5/16/15
-Time Worked: 12.0 hours
+-Version 1.22 Indev - 4/25/15, 4/27/15, 4/28/15, 5/13/15, 5/14/15, 5/15/15, 5/16/15, 5/27/15, 5/28/15
+Time Worked: 18.0 hours
 //TODO move calclulate Gravity to MatterComponent from STDLIB
 	+Added component ID's for identification of type
 	+Added RandomWithRange method to Random color generator to fix runtime exceptions (lots).
