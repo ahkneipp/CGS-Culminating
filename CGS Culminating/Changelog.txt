@@ -73,7 +73,6 @@ Time Worked: 2.5 hours
 	
 -Version 1.22 Indev - 4/25/15, 4/27/15, 4/28/15, 5/13/15, 5/14/15, 5/15/15, 5/16/15, 5/27/15, 5/28/15
 Time Worked: 18.0 hours
-//TODO move calclulate Gravity to MatterComponent from STDLIB
 	+Added component ID's for identification of type
 	+Added RandomWithRange method to Random color generator to fix runtime exceptions (lots).
 	+Added constructor to PhysicsVector to make vector updates easier.
@@ -89,3 +88,9 @@ Time Worked: 18.0 hours
 	~Fixed a bunch of spelling mistakes in comments
 	~Restructured hierarchy tree for the components
 	~Fixed some null pointer exceptions.
+
+-Version 1.3 Indev - 5/30/15
+Time Worked: Started at 11:45
+	+Added parseStartingArguments to BlackHoleSimulator so command line arguments can be given with the initialization of the program
+	
+	
