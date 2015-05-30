@@ -25,6 +25,11 @@ public class StarComponent extends MatterComponent //implements Movable
 		this.age = age;
 	}
 	
+	public StarComponent() 
+	{
+		this.color = RandomColor.getRandomColor();
+	}
+
 	private double temperature = 0.0;
 	private double age = 0.0;
     //Characters before the dash are the initials of the class name, the ones after are the ones of the immediate superclass

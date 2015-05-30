@@ -95,6 +95,7 @@ public class BlackHoleSimulator
 	        }
         }
     }
+    
     private static void parseStartingArguments(String[] arguments)
     {
     	try
@@ -145,4 +146,6 @@ public class BlackHoleSimulator
     public static final Canvas content = new Canvas();
     public static final ArrayList<MatterComponent> components = new ArrayList<MatterComponent>(5);
     public static boolean textBased;
+    public static boolean componentIsSelected;
+    public static boolean isPaused = false;
 }

@@ -52,6 +52,15 @@ public class MatterComponent extends JComponent implements Movable
 		this.updateVelocity();
 	}
 	
+	public void setIsSelected(boolean selected)
+	{
+		this.isSelected = selected;
+	}
+	
+	public boolean getIsSelected()
+	{
+		return isSelected;
+	}	
 
 	/**
 	 * @return The ID string of the class.  Formatted so that the first few characters are the class name and the last few are
@@ -86,6 +95,11 @@ public class MatterComponent extends JComponent implements Movable
 		int yCourner = (int) (this.y - diameter);
 		hitbox = new Rectangle((int)(xCourner + diameter/Math.sqrt(2.0)), (int)(yCourner + diameter/Math.sqrt(2.0)),
 				(int)(diameter/Math.sqrt(2.0)), (int)(diameter/Math.sqrt(2.0)));
+	}
+	
+	public Color getColor()
+	{
+		return this.color;
 	}
 	
 	@Override
@@ -142,6 +156,16 @@ public class MatterComponent extends JComponent implements Movable
 					BlackHoleSimulator.components.get(i).getMass().getValue());
 		}
 	}
+	
+	public void setX(double x)
+	{
+		this.x = x;
+	}
+	
+	public void setY(double x)
+	{
+		this.y = y;
+	}
 	//end methods
 	protected Mass mass = null;
 	protected double radius = 0.0;
@@ -154,6 +178,7 @@ public class MatterComponent extends JComponent implements Movable
 	private Rectangle hitbox = null;
     //Characters before the dash are the initials of the class name, the ones after are the ones of the immediate superclass
     public static final String ID = "MC-JC";
+    protected boolean isSelected;
 	
 	//The following methods are simply overridden by the sub classes until I can get around to standardizing them
 
