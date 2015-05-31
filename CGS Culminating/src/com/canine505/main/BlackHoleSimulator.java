@@ -8,7 +8,9 @@ import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.Scanner;
 
+import com.canine505.util.CanineTimer;
 import com.canine505.util.ErrorMessage;
 import com.canine505.util.Mass;
 import com.canine505.util.Movable;
@@ -40,7 +42,7 @@ public class BlackHoleSimulator
     {
         parseStartingArguments(args);
         //TODO set to false before any presentation
-        ErrorMessage.setPrintErrorStatements(true);
+        ErrorMessage.setPrintErrorStatements(false);
         //TODO set to false before any presentation
         ErrorMessage.setPrintTestingStatements(false);
         //Sets the default multiplier to handle larger numbers
@@ -83,16 +85,40 @@ public class BlackHoleSimulator
 	        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        window.setVisible(true);
 	        //main loop
-	        while(true)
+	        if(!isPaused)
 	        {
-	        	//System.out.println(window.getComponent(0));
-	            //window.validate();
-	        	window.repaint();
-	        	//Testing stuff goes here
-	        	ErrorMessage.printTst(String.valueOf(Double.MAX_VALUE),false);
-	        	double[] x = new double[] {0,90}; 
-	        	double[] y = new double[] {0,90};
+		        while(true)
+		        {
+		        	//System.out.println(window.getComponent(0));
+		            //window.validate();
+		        	window.repaint();
+		        	//Testing stuff goes here
+//		        	ErrorMessage.printTst(String.valueOf(Double.MAX_VALUE),false);
+//		        	double[] x = new double[] {0,90}; 
+//		        	double[] y = new double[] {0,90};
+		        }
 	        }
+        }
+        else
+        {
+        	while(true)
+        	{
+        		time.start();
+    			if(time.getTime() < 3000 && scan.hasNext())
+    			{
+    				StdLib.parseCommand(scan.nextLine());
+    				time.reset();
+    			}
+
+        		if(!isPaused)
+        		{
+	        		for(int i = 0; i< components.size(); i++)
+	        		{
+	        			System.out.println("I am updating everything");
+	        			components.get(i).updateAll();
+	        		}
+        		}
+        	}
         }
     }
     
@@ -145,7 +171,9 @@ public class BlackHoleSimulator
     public static final JFrame window = new JFrame();
     public static final Canvas content = new Canvas();
     public static final ArrayList<MatterComponent> components = new ArrayList<MatterComponent>(5);
+    public static final Scanner scan = new Scanner(System.in);
     public static boolean textBased;
     public static boolean componentIsSelected;
     public static boolean isPaused = false;
+    private static CanineTimer time = new CanineTimer();
 }

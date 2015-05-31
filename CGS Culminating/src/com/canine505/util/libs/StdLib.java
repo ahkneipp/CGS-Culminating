@@ -30,29 +30,26 @@ public class StdLib
         else
             return false;
     }
-    //TODO add functionality to automatically delete selected object for delete
-    //TODO have all the parseInts parse char-ats
-    //TODO make sure each case has a break
+
     public static void parseCommand(String command)
     {
     	String message =  "I would really like to do what you want me to do, but I didn't understand you.";
     	String message1 = "The desired selection cannot be made, because the number you gave me is too big, or another component"
-    			+ "is already selected.";
-    	switch(command.substring(0, 3))
+    			+ " is already selected.";
+    	switch(command.substring(0, 4))
     	{
     	case "sele": //select
-    		
-    		if(command.substring(0,5).equalsIgnoreCase("select"))
+    		if(command.substring(0,6).equalsIgnoreCase("select"))
     		{
-    			if(Integer.parseInt(command.substring(6,command.length()-1)) < BlackHoleSimulator.components.size() && 
+    			//System.out.println(command.substring(7,command.length()));
+    			if(Integer.parseInt(command.substring(7,command.length())) < BlackHoleSimulator.components.size() && 
     					!BlackHoleSimulator.componentIsSelected)
     			{
     				BlackHoleSimulator.componentIsSelected = true;
-    				BlackHoleSimulator.components.get(Integer.parseInt(command.substring(6, command.length()-1)))
+    				BlackHoleSimulator.components.get(Integer.parseInt(command.substring(7, command.length())))
     					.setIsSelected(true);
     				System.out.println("You have selected a "+ getComponentType(BlackHoleSimulator.components.get
-    						(getSelectedComponent()).getID()) + ".");
-    				
+    						(getSelectedComponent()).getID()) + ".");    				
     			}
     			else
     			{
@@ -67,7 +64,7 @@ public class StdLib
     		
     	case "dese": //deselect
     		
-    		if(command.substring(0,7).equalsIgnoreCase("deselect"))
+    		if(command.substring(0,8).equalsIgnoreCase("deselect"))
     		{
     			if(BlackHoleSimulator.componentIsSelected)
     			{
@@ -90,10 +87,13 @@ public class StdLib
     		break;
     		
     	case "dele": //delete
-    		if(command.substring(0,5).equalsIgnoreCase("delete") && Integer.parseInt(command.substring(6,command.length()-1)) 
-    				< BlackHoleSimulator.components.size())
+    		if(command.substring(0,5).equalsIgnoreCase("delete") && (BlackHoleSimulator.componentIsSelected || 
+    				Integer.parseInt(command.substring(7,command.length()-1)) < BlackHoleSimulator.components.size() ))
     		{
-    			BlackHoleSimulator.components.remove(Integer.parseInt(command.substring(6,command.length()-1)));
+    			if(!BlackHoleSimulator.componentIsSelected)
+    				BlackHoleSimulator.components.remove(Integer.parseInt(command.substring(7,command.length()-1)));
+    			else
+    				BlackHoleSimulator.components.remove(getSelectedComponent());
     		}
     		else
     		{
@@ -102,9 +102,9 @@ public class StdLib
     		break;
     		
     	case "add ": //add
-    		parseCommand("pause");
-    		System.out.println("Paused the simulation");
-    		switch(command.substring(4,command.length() - 1))
+    		//System.out.println("Paused the simulation");
+			parseCommand("pause");
+    		switch(command.substring(4,command.length()))
     		{
     		case "blackhole":
     			BlackHoleSimulator.components.add(new BlackHoleComponent());
@@ -114,13 +114,13 @@ public class StdLib
     		case "planet":
     			BlackHoleSimulator.components.add(new PlanetComponent());
     			System.out.println("Added a planet with a null mass, a null velocity, "
-    					+ "and color" +BlackHoleSimulator.components.get(BlackHoleSimulator.components.size() - 1).getColor() +
+    					+ "and color " +BlackHoleSimulator.components.get(BlackHoleSimulator.components.size() - 1).getColor() +
     					"as component" +" " + (BlackHoleSimulator.components.size() - 1) + ".");
     			break;
     		case "star":
     			BlackHoleSimulator.components.add(new StarComponent());
     			System.out.println("Added a star with a null mass, a null velocity, "
-    					+ "and color" +BlackHoleSimulator.components.get(BlackHoleSimulator.components.size() - 1).getColor() +
+    					+ "and color " +BlackHoleSimulator.components.get(BlackHoleSimulator.components.size() - 1).getColor() +
     					"as component" +" " + (BlackHoleSimulator.components.size() - 1) + ".");
     			break;
     		default:
@@ -130,9 +130,8 @@ public class StdLib
     		break;
     		
     	case "lumi": //luminosity (only applicable to black holes)
-    		if((command.substring(0,9).equalsIgnoreCase("luminosity") && Integer.parseInt(command.substring(6,command.length()-1)) 
-    				< BlackHoleSimulator.components.size()) || (command.substring(0,9).equalsIgnoreCase("luminosity") 
-    						&& BlackHoleSimulator.componentIsSelected))
+    		if(command.substring(0,10).equalsIgnoreCase("luminosity") && ( BlackHoleSimulator.componentIsSelected ||
+    				Integer.parseInt(command.substring(11,command.length()-1)) < BlackHoleSimulator.components.size()))
     		{
     			if(BlackHoleSimulator.componentIsSelected && BlackHoleSimulator.components.get(getSelectedComponent())
     					.getID().equals("BHC-MC"))
@@ -146,13 +145,13 @@ public class StdLib
     						getSelectedComponent()).getMass().getValue()/(1.9891 * Math.pow(10,30)))));
     			}
     			else if(!BlackHoleSimulator.componentIsSelected && BlackHoleSimulator.components.get(
-    					Integer.parseInt(command.substring(6,command.length()-1))).getID().equals("BHC-MC"))
+    					Integer.parseInt(command.substring(11,command.length()-1))).getID().equals("BHC-MC"))
     			{
     				System.out.println("Luminosity of Black hole Component: " + 4.0 * Math.PI * 
     						Math.pow(((2.0 * StdLib.GRAVITATIONAL_CONSTANT * BlackHoleSimulator.components.get(
-    						Integer.parseInt(command.substring(6,command.length()-1))).getMass().getValue()))/ 
+    						Integer.parseInt(command.substring(11,command.length()-1))).getMass().getValue()))/ 
     						Math.pow(StdLib.SPEED_OF_LIGHT,2),2)* (5.67 * Math.pow(10,-5) * ((6.0 * Math.pow(10,-8))
-    						* BlackHoleSimulator.components.get(Integer.parseInt(command.substring(6,command.length()-1)))
+    						* BlackHoleSimulator.components.get(Integer.parseInt(command.substring(11,command.length()-1)))
     						.getMass().getValue()/(1.9891 * Math.pow(10,30)))));
     			}
     			else
@@ -167,9 +166,8 @@ public class StdLib
     		break;
     		
     	case "appe": //apperantTemperature (only applicable to black holes)
-    		if((command.substring(0,17).equalsIgnoreCase("apperantTemperature") && Integer.parseInt(command.substring(18,command.length()-1)) 
-    				< BlackHoleSimulator.components.size()) || (command.substring(0,17).equalsIgnoreCase("apperantTemperature") 
-    						&& BlackHoleSimulator.componentIsSelected))
+    		if(command.substring(0,17).equalsIgnoreCase("apperantTemperature") && (BlackHoleSimulator.componentIsSelected ||
+    				Integer.parseInt(command.substring(19,command.length()-1)) < BlackHoleSimulator.components.size()))
     		{
     			if(BlackHoleSimulator.componentIsSelected && BlackHoleSimulator.components.get(getSelectedComponent())
     					.getID().equals("BHC-MC"))
@@ -179,10 +177,10 @@ public class StdLib
     						* Math.pow(10,30)) );
     			}
     			else if(!BlackHoleSimulator.componentIsSelected && BlackHoleSimulator.components.get(
-    					Integer.parseInt(command.substring(18,command.length()-1))).getID().equals("BHC-MC"))
+    					Integer.parseInt(command.substring(19,command.length()-1))).getID().equals("BHC-MC"))
     			{
     				System.out.println("Apperant temperature of the Black hole Component: " + (6 * Math.pow(10,-8))/
-    						BlackHoleSimulator.components.get(Integer.parseInt(command.substring(18,command.length()-1)))
+    						BlackHoleSimulator.components.get(Integer.parseInt(command.substring(19,command.length()-1)))
     						.getMass().getValue()/(1.9891 * Math.pow(10,30)) );
     			}
     			else
@@ -196,8 +194,8 @@ public class StdLib
     		}
     		break;
     	case "posi": //position
-    		if((command.substring(0,7).equalsIgnoreCase("position") && (Integer.parseInt(command.substring(9,command.length()-1)) 
-    				< BlackHoleSimulator.components.size()) || BlackHoleSimulator.componentIsSelected))
+    		if(command.substring(0,7).equalsIgnoreCase("position") && (BlackHoleSimulator.componentIsSelected || Integer.parseInt
+    				(command.substring(9,command.length()-1)) < BlackHoleSimulator.components.size()))
     		{
     			if(BlackHoleSimulator.componentIsSelected)
     			{
@@ -218,22 +216,22 @@ public class StdLib
     		}
     		break;
     	case "velo": //velocity
-    		if((command.substring(0,7).equalsIgnoreCase("position") && (Integer.parseInt(command.substring(9,command.length()-1)) 
-    				< BlackHoleSimulator.components.size()) || BlackHoleSimulator.componentIsSelected))
+    		if((command.substring(0,8).equalsIgnoreCase("velocity") && (BlackHoleSimulator.componentIsSelected||
+    				Integer.parseInt(command.substring(9,command.length())) < BlackHoleSimulator.components.size()) ))
     		{
     			if(BlackHoleSimulator.componentIsSelected)
     			{
-    				System.out.println("Component " + getSelectedComponent() + "has a velocity of <" + 
+    				System.out.println("Component " + getSelectedComponent() + " has a velocity of <" + 
     						BlackHoleSimulator.components.get(getSelectedComponent()).getVelocity().getVectorMatrixNotation()[0]
     						+ ", " + BlackHoleSimulator.components.get(getSelectedComponent()).getVelocity().
     						getVectorMatrixNotation()[1] + ">");
     			}
     			else if(!BlackHoleSimulator.componentIsSelected)
     			{
-    				System.out.println("Component " + (Integer.parseInt(command.substring(9,command.length()-1))) + 
-    						"has a velocity of <" +	BlackHoleSimulator.components.get(Integer.parseInt(command.substring
-    						(9,command.length()-1))).getVelocity().getVectorMatrixNotation()[0] + ", " + 
-    						BlackHoleSimulator.components.get(Integer.parseInt(command.substring(9,command.length()-1))).
+    				System.out.println("Component " + (Integer.parseInt(command.substring(9,command.length()))) + 
+    						" has a velocity of <" +	BlackHoleSimulator.components.get(Integer.parseInt(command.substring
+    						(9,command.length()))).getVelocity().getVectorMatrixNotation()[0] + ", " + 
+    						BlackHoleSimulator.components.get(Integer.parseInt(command.substring(9,command.length()))).
     						getVelocity().getVectorMatrixNotation()[1] + ">");
     			}
     		}
@@ -244,11 +242,17 @@ public class StdLib
     		break;
     	case "paus": //pause
     		if(command.equalsIgnoreCase("pause"))
+    		{
     			BlackHoleSimulator.isPaused = true;
+    			System.out.println("Paused the simulation");
+    		}
     		break;
     	case "resu": //resume
     		if(command.equalsIgnoreCase("resume"))
+    		{
     			BlackHoleSimulator.isPaused = false;
+    			System.out.println("Resumed the simulation");
+    		}
     		break;
     	case "list": //list
     		System.out.println("Index    Component type    Position");
@@ -260,8 +264,8 @@ public class StdLib
     			System.out.print("         ");
     			System.out.println("(" + BlackHoleSimulator.components.get(i).getX() + ", " + 
     					BlackHoleSimulator.components.get(i).getY() + ")");
-    			break;
     		}
+    		break;
     	case "edit": //edit
     		if(BlackHoleSimulator.componentIsSelected)
     			editComponent(BlackHoleSimulator.components.get(getSelectedComponent()),new Scanner(System.in));
@@ -269,6 +273,9 @@ public class StdLib
     		{
     			System.out.println("Please select a component to edit using the select command");
     		}
+    		break;
+    	case "exit":
+    		System.exit(0);
     		break;
     	default: 
     		System.out.println(message);
@@ -278,19 +285,25 @@ public class StdLib
     
     private static String getComponentType(String componentID)
     {
+    	String returnable;
     	switch(componentID)
     	{
     	case "BHC-MC":
-    		return "black hole";
+    		returnable = "black hole";
+    		break;
     	case "MC-JC":
-    		return "generic";
+    		returnable = "generic";
+    		break;
     	case "SC-MC":
-    		return "star";
+    		returnable = "star";
+    		break;
     	case "PC-MC":
-    		return "planet";
+    		returnable = "planet";
+    		break;
     	default:
-    		return null;
+    		returnable = null;
     	}
+    	return returnable;
     }
     
     private static int getSelectedComponent()
@@ -320,11 +333,12 @@ public class StdLib
     		double temp1 = scanner.nextDouble();
     		System.out.println("Please give the vertical component of the Vector.");
     		double temp2 = scanner.nextDouble();
-    		component.getVelocity().setVectorMatrixNotation(new double[]{temp1, temp2});
+    		double[] temp3 = new double[] {temp1, temp2};
+    		component.getVelocity().setVectorMatrixNotation(temp3);
     		break;
     	case 3:
     		System.out.println("Please give the x value of the new position.");
-    		component.setX(scanner.nextDouble());
+    		component.setX(scanner.nextDouble());;
     		System.out.println("Please give the y value of the new position.");
     		component.setY(scanner.nextDouble());
     		break;
@@ -333,10 +347,13 @@ public class StdLib
     
     public static PhysicsVector calculateGravity(MatterComponent m1, MatterComponent m2)
     {
+    	if(BlackHoleSimulator.components.size() != 1)
     	return new PhysicsVector(Math.toDegrees(Math.atan((m1.getY()-m2.getY())/(m1.getX()-m2.getX()))),
     			(StdLib.GRAVITATIONAL_CONSTANT * m1.getMass().getValue() * m2.getMass().getValue())
     			/ (Math.sqrt(Math.pow(m2.getX() - m1.getX(), 2) + (Math.pow(m2.getY() + m1.getY(), 2)))*1000)/*multiply by 1000 because 
     			 * it needs to be converted to meters from the KM handed to it */);
+    	else
+    		return new PhysicsVector(0,0);
     }
     
     public static PhysicsVector calculateGravity(double m1, double m2, double[] xs, double[]ys)

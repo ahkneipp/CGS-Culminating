@@ -25,6 +25,8 @@ public class MatterComponent extends JComponent implements Movable
 	public MatterComponent()
 	{
 		this.color = RandomColor.getRandomColor();
+		this.vel = new Velocity(new double[]{0,0});
+		this.mass = new Mass(0);
 	}
 	public MatterComponent(Mass mass, double radius)
 	{
@@ -134,7 +136,7 @@ public class MatterComponent extends JComponent implements Movable
     	//@TESTTAG
     	this.x += (this.getVelocity().getVectorMatrixNotation()[0]/1000) * .1;
     	this.y += (this.getVelocity().getVectorMatrixNotation()[1]/1000) * .1;
-        this.calculateHitbox();
+        //this.calculateHitbox();
     }
     public Mass getMass()
     {
@@ -144,25 +146,42 @@ public class MatterComponent extends JComponent implements Movable
 	@Override
 	public void updateVelocity() 
 	{
-		double[] temp = new double[2];
-		temp = vel.getVectorMatrixNotation();
-		for(int i = 0; i < BlackHoleSimulator.components.size(); i++)
+		if(vel != null)
 		{
-			this.vel =new Velocity((temp[0] + StdLib.calculateGravity(this, 
-					BlackHoleSimulator.components.get(i)).getVectorMatrixNotation()[0]) / 
-					BlackHoleSimulator.components.get(i).getMass().getValue(), 
-					temp[1] + StdLib.calculateGravity(this, 
-					BlackHoleSimulator.components.get(i)).getVectorMatrixNotation()[1] /
-					BlackHoleSimulator.components.get(i).getMass().getValue());
+			double[] temp = new double[2];
+			temp = vel.getVectorMatrixNotation();
+			for(int i = 0; i < BlackHoleSimulator.components.size(); i++)
+			{
+				this.vel =new Velocity((temp[0] + StdLib.calculateGravity(this, 
+						BlackHoleSimulator.components.get(i)).getVectorMatrixNotation()[0]) / 
+						BlackHoleSimulator.components.get(i).getMass().getValue(), 
+						temp[1] + StdLib.calculateGravity(this, 
+						BlackHoleSimulator.components.get(i)).getVectorMatrixNotation()[1] /
+						BlackHoleSimulator.components.get(i).getMass().getValue());
+			}
 		}
 	}
 	
+	public void updateAll()
+	{
+		updateVelocity();
+		updatePosition();
+		calculateHitbox();
+	}
+	public int getX()
+	{
+		return (int) this.x;
+	}
+	public int getY()
+	{
+		return (int) this.y;
+	}
 	public void setX(double x)
 	{
 		this.x = x;
 	}
 	
-	public void setY(double x)
+	public void setY(double y)
 	{
 		this.y = y;
 	}
@@ -177,10 +196,6 @@ public class MatterComponent extends JComponent implements Movable
 	protected Color color = null;
 	private Rectangle hitbox = null;
     //Characters before the dash are the initials of the class name, the ones after are the ones of the immediate superclass
-    public static final String ID = "MC-JC";
+    public static String ID = "MC-JC";
     protected boolean isSelected;
-	
-	//The following methods are simply overridden by the sub classes until I can get around to standardizing them
-
-
 }

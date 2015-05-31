@@ -116,8 +116,8 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
         this.y = (BlackHoleSimulator.window.getHeight()/2)-((2 * StdLib.GRAVITATIONAL_CONSTANT *
             (mass.getValue() * mass.getUnitMultiplier()))/Math.pow(StdLib.SPEED_OF_LIGHT, 2));
             */
-    	System.out.println("X: " + this.x);
-    	System.out.println("Y: " + this.y);
+    	//System.out.println("X: " + this.x);
+    	//System.out.println("Y: " + this.y);
     	this.x += (this.getVelocity().getVectorMatrixNotation()[0]/1000) * .1;
     	this.y += (this.getVelocity().getVectorMatrixNotation()[1]/1000) * .1;
         this.calculateHitbox();
@@ -192,16 +192,19 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
 	//temp updateVelocity method to replace the other one below the fields
 	public void updateVelocity() 
 	{
-		double[] temp = new double[2];
-		temp = vel.getVectorMatrixNotation();
-		for(int i = 0; i < BlackHoleSimulator.components.size(); i++)
+		if(vel != null)
 		{
-			this.vel =new Velocity((temp[0] + StdLib.calculateGravity(this, 
-					BlackHoleSimulator.components.get(i)).getVectorMatrixNotation()[0]) / 
-					BlackHoleSimulator.components.get(i).getMass().getValue(), 
-					temp[1] + StdLib.calculateGravity(this, 
-					BlackHoleSimulator.components.get(i)).getVectorMatrixNotation()[1] /
-					BlackHoleSimulator.components.get(i).getMass().getValue());
+			double[] temp = new double[2];
+			temp = vel.getVectorMatrixNotation();
+			for(int i = 0; i < BlackHoleSimulator.components.size(); i++)
+			{
+				this.vel =new Velocity((temp[0] + StdLib.calculateGravity(this, 
+						BlackHoleSimulator.components.get(i)).getVectorMatrixNotation()[0]) / 
+						BlackHoleSimulator.components.get(i).getMass().getValue(), 
+						temp[1] + StdLib.calculateGravity(this, 
+						BlackHoleSimulator.components.get(i)).getVectorMatrixNotation()[1] /
+						BlackHoleSimulator.components.get(i).getMass().getValue());
+			}
 		}
 	}
 	
