@@ -48,7 +48,7 @@ public class BlackHoleSimulator
         //Sets the default multiplier to handle larger numbers
         com.canine505.util.Unit.setDefaultMultipler(1000.0);
         System.out.println("Black Hole Simulator");
-        System.out.println("Written by Canine505");
+        System.out.println("Written by Alex Kneipp");
         /*
         Place all previous versions and date updated in this block comment.
         See Changelog.txt for specific updates
@@ -61,7 +61,7 @@ public class BlackHoleSimulator
         Version 1.2 Indev - 4/10/15, 4/11/15
         Version 1.21 Indev - 4/14/15, 4/15/15, 4/16/15, 4/17/15
         Version 1.22 Indev - 4/25/15, 4/25/15, 4/27/15, 4/28/15, 5/13/15, 5/14/15, 5/15/15, 5/16/15, 5/27/15, 5/28/15
-        Version 1.3 Indev - 5/30/15
+        Version 1.3 Indev - 5/30/15, 6/1/15
          */
         System.out.print("Version: " + VERSION);
         System.out.println(", Last updated: " + LAST_UPDATED);
@@ -168,8 +168,8 @@ public class BlackHoleSimulator
     }
     //Hey tomorrow me, try using this link: http://stackoverflow.com/questions/20458671/how-to-add-multiple-jcomponents-to-a-jpanel
     //to fix your graphics problem.  If it doesn't work, guess what!  You can't reach back in time to punck yourself/me in the past!
-    private static final String VERSION = "1.3 Indev";
-    private static final String LAST_UPDATED = "5/30/15";
+    private static final String VERSION = "1.0 Beta";
+    private static final String LAST_UPDATED = "6/1/15";
     //private static final JPanel galaxyComponent = new JPanel();
     public static final JFrame window = new JFrame();
     public static final Canvas content = new Canvas();

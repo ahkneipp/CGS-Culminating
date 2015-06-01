@@ -1,8 +1,14 @@
-http://www.idialstars.com/april2013.htm
-https://docs.kde.org/stable5/en/kdeedu/kstars/ai-blackbody.html
-http://math.ucr.edu/home/baez/physics/Relativity/BlackHoles/hawking.html
-http://sites.csn.edu/istewart/mathweb/Math127/vectors/vectors.htm
-Interview w/ Nico Covert
-Interview w/ Noah Golmant
-Java Programming book
-Physicsclassroom
+Golmant, Noah. Personal interview. 24 Apr. 2015.
+ 
+Horstmann, Cay S. Java Concepts for AP Computer Science. 5th ed. Hoboken: J. Wiley & Sons, 2008. 
+     Print.
+      
+McClure, Bruce. "Luminosity of A Star: Radius & Surface Temperature." Ideal Stars. Bruce McClure, 
+     2013. Web. 29 May 2015. <http://www.idialstars.com/april2013.htm>.
+      
+Mutlaq, Jasem. "Blackbody Radiation." The AstroInfo Project. KDE, n.d. Web. 29 May 2015. 
+     <https://docs.kde.org/stable5/en/kdeedu/kstars/ai-blackbody.html>. 
+     
+"The Physics Classroom." The Physics Classroom. N.p., n.d. Web. 1 June 2015. 
+
+N.P. From Quarks to Quasars.  17 Dec. 2013.  Web. 5 Jan. 2014.

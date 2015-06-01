@@ -112,7 +112,7 @@ public class MatterComponent extends JComponent implements Movable
     /**
      * @return The velocity of the component
      */
-    public PhysicsVector getVelocity()
+    public Velocity getVelocity()
     {
     	return this.vel;
     }    
@@ -146,10 +146,11 @@ public class MatterComponent extends JComponent implements Movable
 	@Override
 	public void updateVelocity() 
 	{
-		if(vel != null)
+		System.out.println("Calling updateVelocity()");
+		if(this.vel != null)
 		{
 			double[] temp = new double[2];
-			temp = vel.getVectorMatrixNotation();
+			temp = this.vel.getVectorMatrixNotation();
 			while(true)
 			{
 				if(this.hasCollided() != -1)
@@ -168,6 +169,7 @@ public class MatterComponent extends JComponent implements Movable
 				else
 					break;
 			}
+			System.out.println(BlackHoleSimulator.components.size());
 			for(int i = 0; i < BlackHoleSimulator.components.size(); i++)
 			{
 				this.vel =new Velocity((temp[0] + StdLib.calculateGravity(this, 
@@ -176,16 +178,19 @@ public class MatterComponent extends JComponent implements Movable
 						temp[1] + StdLib.calculateGravity(this, 
 						BlackHoleSimulator.components.get(i)).getVectorMatrixNotation()[1] /
 						BlackHoleSimulator.components.get(i).getMass().getValue());
+				System.out.println("Filler Print statement to hold a breakpoint");
 			}
 		}
 	}
 	
 	public void updateAll()
 	{
+		//System.out.println("Updating simulation");
 		updateVelocity();
 		updatePosition();
 		calculateHitbox();
 	}
+	
 	public int getX()
 	{
 		return (int) this.x;

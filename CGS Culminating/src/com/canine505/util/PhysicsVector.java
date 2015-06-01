@@ -94,7 +94,7 @@ public class PhysicsVector
    */
   public double[] getVectorRadians()
   {
-    return new double[] {Math.toDegrees(direction), magnitude};
+    return new double[] {Math.toRadians(direction), magnitude};
   }
 
   /**

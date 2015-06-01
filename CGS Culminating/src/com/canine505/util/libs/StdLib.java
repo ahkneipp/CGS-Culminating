@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.canine505.main.BlackHoleSimulator;
 import com.canine505.util.PhysicsVector;
+import com.canine505.util.Velocity;
 import com.canine505.util.visualComponents.BlackHoleComponent;
 import com.canine505.util.visualComponents.MatterComponent;
 import com.canine505.util.visualComponents.PlanetComponent;
@@ -171,7 +172,6 @@ public class StdLib
     		break;
     		
     	case "appe": //apperantTemperature (only applicable to black holes)
-
     		if(command.substring(0,19).equalsIgnoreCase("apperantTemperature") && (BlackHoleSimulator.componentIsSelected ||
     				Integer.parseInt(command.substring(19,command.length())) < BlackHoleSimulator.components.size()))
     		{
@@ -342,6 +342,7 @@ public class StdLib
     	case 1:
     		System.out.println("Please enter a new mass for the component in Kilograms.");
     		component.getMass().setValue(scanner.nextDouble());
+    		//scanner.close();
     		break;
     	case 2:
     		System.out.println("Please give the horizontal component of the Vector.");
@@ -350,25 +351,33 @@ public class StdLib
     		double temp2 = scanner.nextDouble();
     		double[] temp3 = new double[] {temp1, temp2};
     		component.getVelocity().setVectorMatrixNotation(temp3);
+    		//scanner.close();
     		break;
     	case 3:
     		System.out.println("Please give the x value of the new position.");
     		component.setX(scanner.nextDouble());;
     		System.out.println("Please give the y value of the new position.");
     		component.setY(scanner.nextDouble());
+    		//scanner.close();
     		break;
     	}
     }
     
     public static PhysicsVector calculateGravity(MatterComponent m1, MatterComponent m2)
     {
-    	if(BlackHoleSimulator.components.size() != 1)
-    	return new PhysicsVector(Math.toDegrees(Math.atan((m1.getY()-m2.getY())/(m1.getX()-m2.getX()))),
+    	if(BlackHoleSimulator.components.size() > 1)
+    	{
+    		//System.out.println("calculating legit gravity");
+    		return new Velocity(Math.toDegrees(Math.atan((m2.getY()-m1.getY())/(m2.getX()-m1.getX()))),
     			(StdLib.GRAVITATIONAL_CONSTANT * m1.getMass().getValue() * m2.getMass().getValue())
-    			/ (Math.sqrt(Math.pow(m2.getX() - m1.getX(), 2) + (Math.pow(m2.getY() + m1.getY(), 2)))*1000)/*multiply by 1000 because 
+    			/ (Math.sqrt(Math.pow(m2.getX() - m1.getX(), 2) + (Math.pow(m2.getY() - m1.getY(), 2)))*1000)/*multiply by 1000 because 
     			 * it needs to be converted to meters from the KM handed to it */);
+    	}
     	else
+    	{
+    		//System.out.println("returning no gravity");
     		return new PhysicsVector(0,0);
+    	}
     }
     
     public static PhysicsVector calculateGravity(double m1, double m2, double[] xs, double[]ys)

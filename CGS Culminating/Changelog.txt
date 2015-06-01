@@ -99,8 +99,11 @@ Time Worked: 9 hours
 	+Added CanineTimer to delay command reads.
 	~Squashed lots of tricky bugs, many more to go
 	
--Version 1.0 Alpha - 5/31/15
-Time Worked: 2.5 hours
+-Version 1.0 Alpha - 5/31/15, 6/1/15
+Time Worked: 6.5 hours
+	-removed most references of units from the code
+	~Fixed velocity problems (kinda).
 	~Fixed some bugs where CanineTimer would count down instead of up
 	~Fixed the simulation pausing after every command.
 	~Squashed many, many bugs.
+	~Hunted down a velocity bug to the calculateGravity method.

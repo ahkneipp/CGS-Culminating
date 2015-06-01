@@ -31,7 +31,7 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
     	//create a black hole with a mass of 1000 kilograms
     	Mass initialMass = new Mass(1000.00);
     	this.mass = initialMass;
-        this.vel = null;
+        this.vel = new Velocity(new double[]{0,0});
         //set the initial position to the middle of the screen
         this.x = (BlackHoleSimulator.window.getWidth()/2)-((2 * StdLib.GRAVITATIONAL_CONSTANT *
             (initialMass.getValue() * initialMass.getUnitMultiplier()))/Math.pow(StdLib.SPEED_OF_LIGHT, 2));
@@ -147,7 +147,7 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
     /**
      * @return The velocity of the black hole
      */
-    public PhysicsVector getVelocity()
+    public Velocity getVelocity()
     {
     	if(this.vel != null)
     	{
@@ -156,7 +156,7 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
     	else
     	{
     		ErrorMessage.printErr("Vel was null, returning blank vector. ", true);
-    		return new PhysicsVector();
+    		return new Velocity();
     	}
     }
     
@@ -193,18 +193,24 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
 	//temp updateVelocity method to replace the other one below the fields
 	public void updateVelocity() 
 	{
+		//System.out.println("calling updateVelocity in blackholecomponent");
 		if(vel != null)
 		{
 			double[] temp = new double[2];
-			temp = vel.getVectorMatrixNotation();
+			temp[0] = vel.getVectorMatrixNotation()[0];
+			temp[1] = vel.getVectorMatrixNotation()[1];
+			//System.out.println("Temp:" + temp[0]);
 			for(int i = 0; i < BlackHoleSimulator.components.size(); i++)
 			{
-				this.vel =new Velocity((temp[0] + StdLib.calculateGravity(this, 
+				if(BlackHoleSimulator.components.get(i) != this)
+					this.vel =new Velocity((temp[0] + StdLib.calculateGravity(this, 
 						BlackHoleSimulator.components.get(i)).getVectorMatrixNotation()[0]) / 
-						BlackHoleSimulator.components.get(i).getMass().getValue(), 
+						this.getMass().getValue(), 
 						temp[1] + StdLib.calculateGravity(this, 
 						BlackHoleSimulator.components.get(i)).getVectorMatrixNotation()[1] /
-						BlackHoleSimulator.components.get(i).getMass().getValue());
+						this.getMass().getValue());
+				//System.out.println(temp[0]);
+				//System.out.println(this.vel.getVectorMatrixNotation()[0]);
 			}
 		}
 	}
