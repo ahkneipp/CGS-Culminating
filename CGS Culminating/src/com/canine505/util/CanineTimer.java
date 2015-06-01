@@ -4,13 +4,19 @@ public class CanineTimer
 {
 	public void start()
 	{
-		this.startTime = System.currentTimeMillis();
-		this.isRunning = true;
+		if(!isRunning)
+		{
+			this.startTime = System.currentTimeMillis();
+			this.isRunning = true;
+		}
 	}
 	public void stop()
 	{
-		this.endTime = System.currentTimeMillis();
-		this.isRunning = false;
+		if(isRunning)
+		{
+			this.endTime = System.currentTimeMillis();
+			this.isRunning = false;
+		}
 	}
 	public void reset()
 	{
@@ -20,9 +26,9 @@ public class CanineTimer
 	public double getTime()
 	{
 		if(isRunning)
-			return this.startTime - System.currentTimeMillis();
+			return System.currentTimeMillis() - this.startTime ;
 		else
-			return this.startTime - this.endTime;
+			return this.endTime-this.startTime;
 	}
 	private boolean isRunning;
 	private double startTime;

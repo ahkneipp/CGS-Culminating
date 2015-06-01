@@ -104,17 +104,20 @@ public class BlackHoleSimulator
         	while(true)
         	{
         		time.start();
-    			if(time.getTime() < 3000 && scan.hasNext())
+        		//System.out.println("Time: " + time.getTime());
+        		if(time.getTime() >= 3000 && scan.hasNext())
     			{
+       				//System.out.println("I am entering the main if");
+    				time.stop();
+       				time.reset();
     				StdLib.parseCommand(scan.nextLine());
-    				time.reset();
     			}
-
+        		//System.out.println(isPaused);
         		if(!isPaused)
         		{
 	        		for(int i = 0; i< components.size(); i++)
 	        		{
-	        			System.out.println("I am updating everything");
+	        			//System.out.println("I am updating everything");
 	        			components.get(i).updateAll();
 	        		}
         		}

@@ -71,7 +71,7 @@ public class MatterComponent extends JComponent implements Movable
 	@Override
 	public String getID() 
 	{
-		return MatterComponent.ID;
+		return this.ID;
 	}
 	
 	@Override
@@ -150,6 +150,24 @@ public class MatterComponent extends JComponent implements Movable
 		{
 			double[] temp = new double[2];
 			temp = vel.getVectorMatrixNotation();
+			while(true)
+			{
+				if(this.hasCollided() != -1)
+				{
+					if(this.priority > BlackHoleSimulator.components.get(this.hasCollided()).priority)
+					{
+						this.mass = new Mass(this.mass.getValue() + 
+								BlackHoleSimulator.components.get(this.hasCollided()).getMass().getValue());
+						this.vel = new Velocity(new double[] {this.vel.getVectorMatrixNotation()[0] + 
+								BlackHoleSimulator.components.get(this.hasCollided()).vel.getVectorMatrixNotation()[0], 
+								this.vel.getVectorMatrixNotation()[1] + BlackHoleSimulator.components.get(this.hasCollided())
+								.vel.getVectorMatrixNotation()[1]});
+						BlackHoleSimulator.components.remove(this.hasCollided());
+					}
+				}
+				else
+					break;
+			}
 			for(int i = 0; i < BlackHoleSimulator.components.size(); i++)
 			{
 				this.vel =new Velocity((temp[0] + StdLib.calculateGravity(this, 
@@ -196,6 +214,7 @@ public class MatterComponent extends JComponent implements Movable
 	protected Color color = null;
 	private Rectangle hitbox = null;
     //Characters before the dash are the initials of the class name, the ones after are the ones of the immediate superclass
-    public static String ID = "MC-JC";
+    public String ID = "MC-JC";
+    public final int priority = 0;
     protected boolean isSelected;
 }

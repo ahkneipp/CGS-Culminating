@@ -99,3 +99,8 @@ Time Worked: 9 hours
 	+Added CanineTimer to delay command reads.
 	~Squashed lots of tricky bugs, many more to go
 	
+-Version 1.0 Alpha - 5/31/15
+Time Worked: 2.5 hours
+	~Fixed some bugs where CanineTimer would count down instead of up
+	~Fixed the simulation pausing after every command.
+	~Squashed many, many bugs.

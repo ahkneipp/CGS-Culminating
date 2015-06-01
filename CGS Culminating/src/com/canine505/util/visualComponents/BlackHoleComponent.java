@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+
 //import javax.swing.JComponent;
 import com.canine505.util.ErrorMessage;
 import com.canine505.util.Mass;
@@ -207,7 +208,15 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
 			}
 		}
 	}
-	
+	/**
+	 * @return The ID string of the class.  Formatted so that the first few characters are the class name and the last few are
+	 * the initials of the immediate superclass.
+	 */
+	@Override
+	public String getID() 
+	{
+		return this.ID;
+	}
     
     //////////
     //fields//
@@ -216,10 +225,11 @@ public class BlackHoleComponent extends MatterComponent //implements Movable
     private double y;
     private double diameter;
     private Mass mass;
+    public final int priority = 3;
     //private Velocity velocity;
     private Rectangle hitbox = null;
     //Characters before the dash are the initials of the class name, the ones after are the ones of the immediate superclass
-    public static final String ID = "BHC-MC";
+    public String ID = "BHC-MC";
     //////////////
     //end fields//
     //////////////
